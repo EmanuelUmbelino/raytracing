@@ -34,12 +34,16 @@ ratio = float(width) / height
 screen = (-1, 1 / ratio, 1, -1 / ratio) # screen: left, top, right, bottom
 
 objects = [
-    { 'center': np.array([-0.2, 0, -1]), 'radius': 0.7 },
-    { 'center': np.array([0.1, -0.3, 0]), 'radius': 0.1 },
-    { 'center': np.array([-0.3, 0, 0]), 'radius': 0.15 }
+    # red
+    { 'center': np.array([-0.2, 0, -1]), 'radius': 0.7, 'ambient': np.array([0.1, 0, 0]), 'diffuse': np.array([0.7, 0, 0]), 'specular': np.array([1, 1, 1]), 'shininess': 100 },
+    # green
+    { 'center': np.array([-0.3, 0, 0]), 'radius': 0.15, 'ambient': np.array([0, 0.1, 0]), 'diffuse': np.array([0, 0.7, 0]), 'specular': np.array([1, 1, 1]), 'shininess': 100 },
+    # blue
+    { 'center': np.array([0.1, -0.3, 0]), 'radius': 0.1, 'ambient': np.array([0.1, 0.1, 0.5]), 'diffuse': np.array([0.3, 0.3, 0.9]), 'specular': np.array([1, 1, 1]), 'shininess': 100 }
 ]
 
-light = { 'position': np.array([5, 5, 5]) }
+light = { 'position': np.array([5, 5, 5]), 'ambient': np.array([1, 1, 1]), 'diffuse': np.array([1, 1, 1]), 'specular': np.array([1, 1, 1]) }
+
 
 image = np.zeros((height, width, 3)) # set black image in current size
 # split the screen into width and height in the x and y directions
@@ -69,8 +73,22 @@ for i, y in enumerate(np.linspace(screen[1], screen[3], height)):
         if is_shadowed:
             continue
         
-        # compute de color of current pixel
-        # image[i, j] = ...
+        # RGB
+        illumination = np.zeros((3))
+        
+        # ambient
+        illumination += nearest_object['ambient'] * light['ambient']
+        
+        # diffuse
+        illumination += nearest_object['diffuse'] * light['diffuse'] * np.dot(intersection_to_light, normal_to_surface)
+        
+        # specular
+        intersection_to_camera = normalize(camera - intersection)
+        H = normalize(intersection_to_light + intersection_to_camera)
+        illumination += nearest_object['specular'] * light['specular'] * np.dot(normal_to_surface, H) ** (nearest_object['shininess'] / 4)
+        
+        image[i, j] = np.clip(illumination, 0, 1)
+        
     print("progress: %d/%d" % (i + 1, height))
 
 # convert image
