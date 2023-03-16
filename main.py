@@ -39,6 +39,8 @@ objects = [
     { 'center': np.array([-0.3, 0, 0]), 'radius': 0.15 }
 ]
 
+light = { 'position': np.array([5, 5, 5]) }
+
 image = np.zeros((height, width, 3)) # set black image in current size
 # split the screen into width and height in the x and y directions
 for i, y in enumerate(np.linspace(screen[1], screen[3], height)):
@@ -55,6 +57,17 @@ for i, y in enumerate(np.linspace(screen[1], screen[3], height)):
 
         # compute intersection point between ray and nearest object
         intersection = origin + min_distance * direction
+        
+        normal_to_surface = normalize(intersection - nearest_object['center'])
+        shifted_point = intersection + 1e-5 * normal_to_surface
+        intersection_to_light = normalize(light['position'] - shifted_point)
+        
+        _, min_distance = nearest_intersected_object(objects, shifted_point, intersection_to_light)
+        intersection_to_light_distance = np.linalg.norm(light['position'] - intersection)
+        is_shadowed = min_distance < intersection_to_light_distance
+        
+        if is_shadowed:
+            continue
         
         # compute de color of current pixel
         # image[i, j] = ...
