@@ -1,11 +1,11 @@
 import { Obj } from "./object";
-import { Vector3 } from "./vector3";
+import { Vector3 } from "../modules/vector3";
 
 export class Ray {
-  origin: Vector3;
-  direction: Vector3;
+  origin: Vector3.T;
+  direction: Vector3.T;
 
-  constructor(origin: Vector3, direction: Vector3) {
+  constructor(origin: Vector3.T, direction: Vector3.T) {
     this.origin = origin;
     this.direction = direction;
   }
@@ -36,7 +36,7 @@ export class Ray {
     return { nearest, min };
   }
 
-  static reflect(ray: Ray, normalToSurface: Vector3): Vector3 {
+  static reflect(ray: Ray, normalToSurface: Vector3.T): Vector3.T {
     return Vector3.subtract(
       ray.direction,
       Vector3.scale(

@@ -1,21 +1,21 @@
 import { Material } from "../interfaces/material";
-import { Vector3 } from "./vector3";
+import { Vector3 } from "../modules/vector3";
 import { Obj } from "./object";
 import { Ray } from "./ray";
 
 export class Sphere implements Obj {
   material: Material;
-  position: Vector3;
+  position: Vector3.T;
   radius: number;
 
-  constructor(material: Material, position: Vector3, radius: number) {
+  constructor(material: Material, position: Vector3.T, radius: number) {
     this.material = material;
     this.position = position;
     this.radius = radius;
   }
 
   intersect(ray: Ray): number[] | null {
-    const oc: Vector3 = Vector3.subtract(ray.origin, this.position);
+    const oc: Vector3.T = Vector3.subtract(ray.origin, this.position);
 
     const a: number = Vector3.squared(ray.direction);
     const b: number = 2 * Vector3.dot(ray.direction, oc);

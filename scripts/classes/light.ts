@@ -1,12 +1,11 @@
-import { SimpleMaterial } from "../interfaces/material";
-import { Vector3 } from "./vector3";
+import { Vector3 } from "../modules/vector3";
 
 export class Light {
-  material: SimpleMaterial;
-  position: Vector3;
+  color: Vector3.T;
+  position: Vector3.T;
 
-  constructor(material: SimpleMaterial, position: Vector3) {
-    this.material = material;
+  constructor(color: Vector3.T, position: Vector3.T) {
+    this.color = color;
     this.position = position;
   }
 }

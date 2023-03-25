@@ -1,4 +1,5 @@
 import * as Jimp from "jimp";
+import { Vector3 } from "../modules/vector3";
 
 export function generateImage(
   width: number,
@@ -11,8 +12,8 @@ export function generateImage(
 
     for (let i = 0; i < height; i++) {
       for (let j = 0; j < width; j++) {
-        const color = imageData[i][j];
-        const hex = Jimp.rgbaToInt(color.x, color.y, color.z, 255);
+        const color: Vector3.T = imageData[i][j];
+        const hex = Jimp.rgbaToInt(color[0], color[1], color[2], 255);
         image.setPixelColor(hex, j, i);
       }
     }

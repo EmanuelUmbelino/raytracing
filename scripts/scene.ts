@@ -1,10 +1,11 @@
 import { GPU } from "gpu.js";
 
-import { Material, SimpleMaterial } from "./interfaces/material";
+import { Material } from "./interfaces/material";
+
+import { Vector3 } from "./modules/vector3";
 
 import { Camera } from "./classes/camera";
 import { Sphere } from "./classes/sphere";
-import { Vector3 } from "./classes/vector3";
 import { Light } from "./classes/light";
 import { Ray } from "./classes/ray";
 
@@ -17,73 +18,65 @@ const WIDTH = 400,
 const MAX_DEPTH = 3;
 
 export function scene() {
-  const camera: Camera = new Camera({ x: 0, y: 0, z: 1 }, WIDTH, HEIGHT);
+  const gpu = new GPU({ mode: "gpu" });
+
+  const camera: Camera = new Camera([0, 0, 1], WIDTH, HEIGHT);
 
   const ys = linspace(camera.screen.top, camera.screen.bottom, HEIGHT);
   const xs = linspace(camera.screen.left, camera.screen.right, WIDTH);
 
-  const lightMaterial: SimpleMaterial = {
-    ambient: new Vector3(1, 1, 1),
-    diffuse: new Vector3(1, 1, 1),
-    specular: new Vector3(1, 1, 1),
-  };
-
   const redMaterial: Material = {
-    ambient: new Vector3(0.1, 0, 0),
-    diffuse: new Vector3(0.7, 0, 0),
-    specular: new Vector3(1, 1, 1),
+    ambient: [0.1, 0, 0],
+    diffuse: [0.7, 0, 0],
+    specular: [1, 1, 1],
     shininess: 100,
     reflection: 0.1,
   };
 
   const greenMaterial: Material = {
-    ambient: new Vector3(0, 0.1, 0),
-    diffuse: new Vector3(0, 0.7, 0),
-    specular: new Vector3(1, 1, 1),
+    ambient: [0, 0.1, 0],
+    diffuse: [0, 0.7, 0],
+    specular: [1, 1, 1],
     shininess: 100,
     reflection: 0.4,
   };
 
   const blueMaterial: Material = {
-    ambient: new Vector3(0, 0, 0.1),
-    diffuse: new Vector3(0.3, 0.3, 0.9),
-    specular: new Vector3(1, 1, 1),
+    ambient: [0, 0, 0.1],
+    diffuse: [0.3, 0.3, 0.9],
+    specular: [1, 1, 1],
     shininess: 100,
     reflection: 0.1,
   };
 
   const mirrorMaterial: Material = {
-    ambient: new Vector3(0.1, 0.1, 0.1),
-    diffuse: new Vector3(0.7, 0.7, 0.7),
-    specular: new Vector3(1, 1, 1),
+    ambient: [0.1, 0.1, 0.1],
+    diffuse: [0.7, 0.7, 0.7],
+    specular: [1, 1, 1],
     shininess: 100,
     reflection: 0.9,
   };
 
-  const light = new Light(lightMaterial, new Vector3(5, 5, 5));
+  const light = new Light([1, 1, 1], [5, 5, 5]);
 
   const objects = [
-    new Sphere(redMaterial, new Vector3(-0.2, 0, -1), 0.7),
-    new Sphere(greenMaterial, new Vector3(-0.3, 0, 0), 0.15),
-    new Sphere(blueMaterial, new Vector3(0.1, -0.3, 0), 0.1),
-    new Sphere(mirrorMaterial, new Vector3(0, -9000, 0), 9000 - 0.7),
+    new Sphere(redMaterial, [-0.2, 0, -1], 0.7),
+    new Sphere(greenMaterial, [-0.3, 0, 0], 0.15),
+    new Sphere(blueMaterial, [0.1, -0.3, 0], 0.1),
+    new Sphere(mirrorMaterial, [0, -9000, 0], 9000 - 0.7),
   ];
 
-  const imageData = matrix(WIDTH, HEIGHT, () => new Vector3(0, 0, 0));
+  const imageData = matrix(WIDTH, HEIGHT, () => [0, 0, 0]);
 
   for (let i = 0, y = ys[i]; i < ys.length; i++, y = ys[i]) {
     for (let j = 0, x = xs[j]; j < xs.length; j++, x = xs[j]) {
-      const pixel = new Vector3(x, y, 0);
+      const pixel: Vector3.T = [x, y, 0];
       const ray: Ray = new Ray(
         camera.position,
         Vector3.normalize(Vector3.subtract(pixel, camera.position))
       );
 
-      let color: Vector3 = {
-        x: 0,
-        y: 0,
-        z: 0,
-      };
+      let color: Vector3.T = [0, 0, 0];
       let reflection = 1;
 
       for (let k = 0; k < MAX_DEPTH; k++) {
@@ -121,40 +114,32 @@ export function scene() {
         // Ambient
         const ambient = Vector3.multiply(
           d.nearest.material.ambient,
-          light.material.ambient
+          light.color
         );
 
         // Diffuse
         const diffuse = Vector3.scale(
-          Vector3.multiply(d.nearest.material.diffuse, light.material.diffuse),
+          Vector3.multiply(d.nearest.material.diffuse, light.color),
           Vector3.dot(intersectioToLight, normalToSurface)
         );
 
         // Specular
-        const intersectionToCamera = Vector3.normalize(
+        const viewDirection = Vector3.normalize(
           Vector3.subtract(camera.position, intersection)
         );
-        const H = Vector3.normalize(
-          Vector3.add(intersectioToLight, intersectionToCamera)
+        const reflectionDirection = Vector3.normalize(
+          Vector3.add(intersectioToLight, viewDirection)
         );
         const specular = Vector3.scale(
-          Vector3.multiply(
-            d.nearest.material.specular,
-            light.material.specular
-          ),
+          Vector3.multiply(d.nearest.material.specular, light.color),
           Math.pow(
-            Vector3.dot(normalToSurface, H),
+            Vector3.dot(normalToSurface, reflectionDirection),
             d.nearest.material.shininess / 4
           )
         );
 
         // RGB
-        const illumination = Vector3.add(
-          new Vector3(0, 0, 0),
-          ambient,
-          diffuse,
-          specular
-        );
+        const illumination = Vector3.add(ambient, diffuse, specular);
 
         // Reflection
         color = Vector3.add(color, Vector3.scale(illumination, reflection));
