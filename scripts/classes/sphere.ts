@@ -1,5 +1,6 @@
-import { Material } from "../interfaces/material";
 import { Vector3 } from "../modules/vector3";
+
+import { Material } from "./material";
 import { Obj } from "./object";
 import { Ray } from "./ray";
 

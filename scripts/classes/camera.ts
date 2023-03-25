@@ -1,5 +1,6 @@
-import { ScreenRatio } from "../interfaces/screen-ratio";
 import { Vector3 } from "../modules/vector3";
+
+import { ScreenRatio } from "../interfaces/screen-ratio";
 
 export class Camera {
   position: Vector3.T;

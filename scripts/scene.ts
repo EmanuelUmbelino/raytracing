@@ -1,13 +1,12 @@
 import { GPU } from "gpu.js";
 
-import { Material } from "./interfaces/material";
-
 import { Vector3 } from "./modules/vector3";
 
 import { Camera } from "./classes/camera";
 import { Sphere } from "./classes/sphere";
 import { Light } from "./classes/light";
 import { Ray } from "./classes/ray";
+import { Material } from "./classes/material";
 
 import { linspace } from "./methods/linspace";
 import { matrix } from "./methods/matrix";
