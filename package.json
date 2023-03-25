@@ -1,0 +1,24 @@
+{
+  "name": "raytracing",
+  "scripts": {
+    "start": "npx tsc app.ts && nodemon app.js"
+  },
+  "dependencies": {
+    "@types/node": "^18.15.5",
+    "gpu.js": "^2.16.0",
+    "jimp": "^0.22.7",
+    "nodemon": "^2.0.21"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "./scripts/*",
+      "app.ts"
+    ],
+    "delay": 800,
+    "ext": "ts",
+    "events": {
+      "start": "npx tsc app.ts",
+      "restart": "npx tsc app.ts"
+    }
+  }
+}
