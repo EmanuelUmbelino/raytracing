@@ -1,5 +1,5 @@
 import * as http from "http";
-import { scene } from "./scripts/generate-image";
+import { scene } from "./scripts/scene";
 
 const hostname = "127.0.0.1";
 const port = 3000;

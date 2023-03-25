@@ -12,12 +12,7 @@ export function generateImage(
     for (let i = 0; i < height; i++) {
       for (let j = 0; j < width; j++) {
         const color = imageData[i][j];
-        const hex = Jimp.rgbaToInt(
-          color.x * 255,
-          color.y * 255,
-          color.z * 255,
-          255
-        );
+        const hex = Jimp.rgbaToInt(color.x, color.y, color.z, 255);
         image.setPixelColor(hex, j, i);
       }
     }

@@ -45,14 +45,16 @@ objects = [
     # red
     { 'center': np.array([-0.2, 0, -1]), 'radius': 0.7, 'ambient': np.array([0.1, 0, 0]), 'diffuse': np.array([0.7, 0, 0]), 'specular': np.array([1, 1, 1]), 'shininess': 100, 'reflection': 0.1 },
     # green
-    { 'center': np.array([-0.3, 0, 0]), 'radius': 0.15, 'ambient': np.array([0, 0.1, 0]), 'diffuse': np.array([0, 0.7, 0]), 'specular': np.array([1, 1, 1]), 'shininess': 100, 'reflection': 0.1 },
+    { 'center': np.array([-0.3, 0, 0]), 'radius': 0.15, 'ambient': np.array([0, 0.1, 0]), 'diffuse': np.array([0, 0.7, 0]), 'specular': np.array([1, 1, 1]), 'shininess': 100, 'reflection': 0.4 },
     # blue
-    { 'center': np.array([0.1, -0.3, 0]), 'radius': 0.1, 'ambient': np.array([0.1, 0.1, 0.5]), 'diffuse': np.array([0.3, 0.3, 0.9]), 'specular': np.array([1, 1, 1]), 'shininess': 100, 'reflection': 0.1 },
+    { 'center': np.array([0.1, -0.3, 0]), 'radius': 0.1, 'ambient': np.array([0, 0, 0.1]), 'diffuse': np.array([0.3, 0.3, 0.9]), 'specular': np.array([1, 1, 1]), 'shininess': 100, 'reflection': 0.1 },
     # mirror
     { 'center': np.array([0, -9000, 0]), 'radius': 9000 - 0.7, 'ambient': np.array([0.1, 0.1, 0.1]), 'diffuse': np.array([0.7, 0.7, 0.7]), 'specular': np.array([1, 1, 1]), 'shininess': 100, 'reflection': 0.9 }
 ]
 
 image = np.zeros((height, width, 3)) # set black image in current size
+
+
 # split the screen into width and height in the x and y directions
 for i, y in enumerate(np.linspace(screen[1], screen[3], height)):
     for j, x in enumerate(np.linspace(screen[0], screen[2], width)):
@@ -106,8 +108,11 @@ for i, y in enumerate(np.linspace(screen[1], screen[3], height)):
             direction = reflected(direction, normal_to_surface)
         
         image[i, j] = np.clip(color, 0, 1)
-        
-    print("progress: %d/%d" % (i + 1, height))
+    
+    if i % 60 == 0:
+       print("progress: ", int(i / height * 100),"%")
+       
+print("progress: 100 %")
 
 # convert image
 plt.imsave('image.png', image)

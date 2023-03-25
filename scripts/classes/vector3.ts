@@ -33,12 +33,14 @@ export class Vector3 {
     return result;
   }
 
-  static multiply(v1: Vector3, v2: Vector3): Vector3 {
-    return new Vector3(
-      v1.y * v2.z - v1.z * v2.y,
-      v1.z * v2.x - v1.x * v2.z,
-      v1.x * v2.y - v1.y * v2.x
-    );
+  static multiply(vec: Vector3, ...vecs: Vector3[]): Vector3 {
+    const result = { x: vec.x, y: vec.y, z: vec.z };
+    for (let vec of vecs) {
+      result.x *= vec.x;
+      result.y *= vec.y;
+      result.z *= vec.z;
+    }
+    return result;
   }
 
   static clip(vec: Vector3, min: number, max: number): Vector3 {
