@@ -121,6 +121,33 @@ export function scene() {
       const d = nearestIntersectedObject(objects, ray);
       if (d.nearest === null) continue;
       colidiu++;
+
+      // compute intersection point between ray and nearest object
+      const intersection = Vector3.add(
+        ray.origin,
+        Vector3.scale(ray.direction, d.min)
+      );
+      const normalToSurface = Vector3.normalize(
+        Vector3.subtract(intersection, d.nearest.position)
+      );
+      const shiftedPoint = Vector3.add(
+        intersection,
+        Vector3.scale(normalToSurface, 1e-5)
+      );
+      const intersectioToLight = Vector3.normalize(
+        Vector3.subtract(light.position, shiftedPoint)
+      );
+
+      const d1 = nearestIntersectedObject(objects, {
+        origin: shiftedPoint,
+        direction: intersectioToLight,
+      });
+      const intersectionToLightDistance = Vector3.linalgNorm(
+        Vector3.subtract(light.position, intersection)
+      );
+      const isShadowed = d1.min < intersectionToLightDistance;
+
+      if (isShadowed) continue;
       apareceu++;
 
       color = d.nearest.material.diffuse;
