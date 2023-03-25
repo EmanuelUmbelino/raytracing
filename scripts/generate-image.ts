@@ -20,7 +20,10 @@ function nearestIntersectedObject(objs: Obj[], ray: Ray) {
   const distances: (number | null)[] = [];
   objs.forEach((obj) => {
     let intersect = obj.intersect(ray);
-    let d: any = intersect === null ? intersect : Math.min(...intersect);
+    let d: any =
+      intersect !== null && intersect[0] > 0 && intersect[1] > 0
+        ? Math.min(...intersect)
+        : null;
     distances.push(d);
   });
 
@@ -72,21 +75,24 @@ export function scene() {
     diffuse: { x: 0.3, y: 0.3, z: 0.9 },
     specular: { x: 1, y: 1, z: 1 },
     shininess: 100,
-    reflection: 0.5,
+    reflection: 0.1,
   };
 
   const mirrorMaterial: Material = {
     ambient: { x: 0.1, y: 0.1, z: 0.1 },
-    diffuse: { x: 0.5, y: 0.5, z: 0.5 },
+    diffuse: { x: 0.7, y: 0.7, z: 0.7 },
     specular: { x: 1, y: 1, z: 1 },
     shininess: 100,
-    reflection: 0.5,
+    reflection: 0.9,
   };
+
+  const light = new Light(lightMaterial, new Vector3(5, 5, 5));
 
   const objects = [
     new Sphere(redMaterial, new Vector3(-0.2, 0, -1), 0.7),
     new Sphere(greenMaterial, new Vector3(-0.3, 0, 0), 0.15),
     new Sphere(blueMaterial, new Vector3(0.1, -0.3, 0), 0.1),
+    new Sphere(mirrorMaterial, new Vector3(0, -9000, 0), 9000 - 0.7),
   ];
 
   const imageData = matrix(WIDTH, HEIGHT, () => new Vector3(0, 0, 0));
@@ -121,7 +127,7 @@ export function scene() {
 
       imageData[i][j] = color;
     }
-    if (i % 15 === 0) {
+    if (i % 60 === 0) {
       console.log(`progress: ${Math.floor((i / ys.length) * 100)}%`);
     }
   }

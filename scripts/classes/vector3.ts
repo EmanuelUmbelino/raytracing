@@ -13,12 +13,24 @@ export class Vector3 {
     return [v.x, v.y, v.z];
   }
 
-  static add(v1: Vector3, v2: Vector3): Vector3 {
-    return new Vector3(v1.x + v2.x, v1.y + v2.y, v1.z + v2.z);
+  static add(vec: Vector3, ...vecs: Vector3[]): Vector3 {
+    const result = { x: vec.x, y: vec.y, z: vec.z };
+    for (let vec of vecs) {
+      result.x += vec.x;
+      result.y += vec.y;
+      result.z += vec.z;
+    }
+    return result;
   }
 
-  static subtract(v1: Vector3, v2: Vector3): Vector3 {
-    return new Vector3(v1.x - v2.x, v1.y - v2.y, v1.z - v2.z);
+  static subtract(vec: Vector3, ...vecs: Vector3[]): Vector3 {
+    const result = { x: vec.x, y: vec.y, z: vec.z };
+    for (let vec of vecs) {
+      result.x -= vec.x;
+      result.y -= vec.y;
+      result.z -= vec.z;
+    }
+    return result;
   }
 
   static multiply(v1: Vector3, v2: Vector3): Vector3 {
@@ -29,36 +41,36 @@ export class Vector3 {
     );
   }
 
-  static clip(v: Vector3, min: number, max: number): Vector3 {
-    for (const p in v) {
-      if (v[p] < min) {
-        v[p] = min;
-      } else if (v[p] > max) {
-        v[p] = max;
+  static clip(vec: Vector3, min: number, max: number): Vector3 {
+    for (const p in vec) {
+      if (vec[p] < min) {
+        vec[p] = min;
+      } else if (vec[p] > max) {
+        vec[p] = max;
       }
     }
-    return v;
+    return vec;
   }
 
-  static scalar(v1: Vector3, v: number): Vector3 {
-    return new Vector3(v1.x * v, v1.y * v, v1.z * v);
+  static scale(vec: Vector3, scalar: number): Vector3 {
+    return new Vector3(vec.x * scalar, vec.y * scalar, vec.z * scalar);
   }
 
-  static linalgNorm(v: Vector3): number {
-    return Math.sqrt(Vector3.squared(v));
+  static linalgNorm(vec: Vector3): number {
+    return Math.sqrt(Vector3.squared(vec));
   }
 
-  static normalize(v: Vector3): Vector3 {
-    const length: number = this.linalgNorm(v);
+  static normalize(vec: Vector3): Vector3 {
+    const length: number = this.linalgNorm(vec);
 
     if (length === 0) {
-      return v;
+      return vec;
     }
 
     return {
-      x: v.x / length,
-      y: v.y / length,
-      z: v.z / length,
+      x: vec.x / length,
+      y: vec.y / length,
+      z: vec.z / length,
     };
   }
 

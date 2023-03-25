@@ -10,6 +10,6 @@ export class Ray {
   }
 
   static ray(ray: Ray, distance: number) {
-    return Vector3.add(ray.origin, Vector3.scalar(ray.direction, distance));
+    return Vector3.add(ray.origin, Vector3.scale(ray.direction, distance));
   }
 }
