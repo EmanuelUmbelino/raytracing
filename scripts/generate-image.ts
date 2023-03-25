@@ -1,12 +1,17 @@
-import { Camera } from "./classes/camera";
-import { linspace } from "./linspace";
 import { GPU } from "gpu.js";
-import * as Jimp from "jimp";
+
+import { Material, SimpleMaterial } from "./interfaces/material";
+
+import { Camera } from "./classes/camera";
 import { Sphere } from "./classes/sphere";
-import { Material } from "./interfaces/material";
 import { Vector3 } from "./classes/vector3";
+import { Light } from "./classes/light";
 import { Obj } from "./classes/object";
 import { Ray } from "./classes/ray";
+
+import { linspace } from "./methods/linspace";
+import { matrix } from "./methods/matrix";
+import { generateImage } from "./methods/generate-image";
 
 const WIDTH = 400,
   HEIGHT = 300;
@@ -34,11 +39,17 @@ function nearestIntersectedObject(objs: Obj[], ray: Ray) {
   return { nearest, min };
 }
 
-export function generateImage() {
+export function scene() {
   const camera: Camera = new Camera({ x: 0, y: 0, z: 1 }, WIDTH, HEIGHT);
 
   const ys = linspace(camera.screen.top, camera.screen.bottom, HEIGHT);
   const xs = linspace(camera.screen.left, camera.screen.right, WIDTH);
+
+  const lightMaterial: SimpleMaterial = {
+    ambient: { x: 1, y: 1, z: 1 },
+    diffuse: { x: 1, y: 1, z: 1 },
+    specular: { x: 1, y: 1, z: 1 },
+  };
 
   const redMaterial: Material = {
     ambient: { x: 0.1, y: 0, z: 0 },
@@ -57,8 +68,16 @@ export function generateImage() {
   };
 
   const blueMaterial: Material = {
-    ambient: { x: 0, y: 0, z: 0.1 },
-    diffuse: { x: 0, y: 0, z: 0.7 },
+    ambient: { x: 0.1, y: 0.1, z: 0.5 },
+    diffuse: { x: 0.3, y: 0.3, z: 0.9 },
+    specular: { x: 1, y: 1, z: 1 },
+    shininess: 100,
+    reflection: 0.5,
+  };
+
+  const mirrorMaterial: Material = {
+    ambient: { x: 0.1, y: 0.1, z: 0.1 },
+    diffuse: { x: 0.5, y: 0.5, z: 0.5 },
     specular: { x: 1, y: 1, z: 1 },
     shininess: 100,
     reflection: 0.5,
@@ -70,48 +89,44 @@ export function generateImage() {
     new Sphere(blueMaterial, new Vector3(0.1, -0.3, 0), 0.1),
   ];
 
+  const imageData = matrix(WIDTH, HEIGHT, () => new Vector3(0, 0, 0));
+
   let total = 0,
     colidiu = 0,
     apareceu = 0;
 
-  new Jimp(WIDTH, HEIGHT, function (err, image) {
-    console.log("err", err, ys.length, xs.length);
-    if (err) throw err;
+  for (let i = 0, y = ys[i]; i < ys.length; i++, y = ys[i]) {
+    for (let j = 0, x = xs[j]; j < xs.length; j++, x = xs[j]) {
+      total++;
 
-    for (let i = 0, y = ys[i]; i < ys.length; i++, y = ys[i]) {
-      for (let j = 0, x = xs[j]; j < xs.length; j++, x = xs[j]) {
-        total++;
-        const pixel = new Vector3(x, y, 0);
-        const ray: Ray = {
-          origin: camera.position,
-          direction: Vector3.normalize(
-            Vector3.subtract(pixel, camera.position)
-          ),
-        };
+      const pixel = new Vector3(x, y, 0);
+      const ray: Ray = new Ray(
+        camera.position,
+        Vector3.normalize(Vector3.subtract(pixel, camera.position))
+      );
 
-        let color: Vector3 = {
-          x: 0,
-          y: 0,
-          z: 0,
-        };
-        const d = nearestIntersectedObject(objects, ray);
-        if (d.nearest !== null) {
-          color = d.nearest.material.diffuse;
-          colidiu++;
-        }
-        const hex = Jimp.rgbaToInt(
-          color.x * 255,
-          color.y * 255,
-          color.z * 255,
-          255
-        );
-        image.setPixelColor(hex, j, i);
-      }
+      let color: Vector3 = {
+        x: 0,
+        y: 0,
+        z: 0,
+      };
+
+      // check for intersections
+      const d = nearestIntersectedObject(objects, ray);
+      if (d.nearest === null) continue;
+      colidiu++;
+      apareceu++;
+
+      color = d.nearest.material.diffuse;
+
+      imageData[i][j] = color;
     }
+    if (i % 15 === 0) {
+      console.log(`progress: ${Math.floor((i / ys.length) * 100)}%`);
+    }
+  }
+  console.log(`progress: 100%`);
+  console.log(total, colidiu, apareceu);
 
-    image.write("test.png", (err) => {
-      if (err) throw err;
-    });
-    console.log(total, colidiu, apareceu);
-  });
+  generateImage(WIDTH, HEIGHT, imageData, "js-image.png");
 }
