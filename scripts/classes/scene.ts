@@ -17,7 +17,7 @@ export class Scene {
   }
 
   constructor() {
-    this.ambientLight = [0.1, 0.1, 0.1];
+    this.ambientLight = [0.9, 0.9, 0.9];
 
     const redMaterial: Material = new Material({
       ambient: [0.1, 0, 0],
@@ -111,16 +111,14 @@ export class Scene {
     let color: Vector3.T = [0, 0, 0];
     if (hit) {
       if (hit.instance.light) {
-        color = [1, 0, 0];
-        // color = Vector3.add(
-        //   this.ambientLight,
-        //   Vector3.scaleDivide(
-        //     hit.instance.light.color,
-        //     Math.pow(hit.distance, 2)
-        //   )
-        // );
+        color = Vector3.add(
+          this.ambientLight,
+          Vector3.scaleDivide(
+            Vector3.scale(hit.instance.light.color, hit.instance.light.power),
+            Math.pow(hit.distance, 2)
+          )
+        );
       } else {
-        // color = [0, 1, 0];
         color = hit.instance.material.eval(this, hit, ray.origin);
       }
     }
