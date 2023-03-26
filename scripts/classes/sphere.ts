@@ -1,16 +1,13 @@
 import { Vector3 } from "../modules/vector3";
 
-import { Material } from "./material";
-import { Obj } from "./object";
+import { Shape } from "./shape";
 import { Ray } from "./ray";
 
-export class Sphere implements Obj {
-  material: Material;
+export class Sphere implements Shape {
   position: Vector3.T;
   radius: number;
 
-  constructor(material: Material, position: Vector3.T, radius: number) {
-    this.material = material;
+  constructor(position: Vector3.T, radius: number) {
     this.position = position;
     this.radius = radius;
   }

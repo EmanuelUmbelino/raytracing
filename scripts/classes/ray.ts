@@ -1,5 +1,6 @@
-import { Obj } from "./object";
+import { Shape } from "./shape";
 import { Vector3 } from "../modules/vector3";
+import { Instance } from "./instance";
 
 export class Ray {
   origin: Vector3.T;
@@ -10,10 +11,10 @@ export class Ray {
     this.direction = direction;
   }
 
-  static nearestIntersectedObject(ray: Ray, objs: Obj[]) {
+  static nearestIntersectedObject(ray: Ray, objs: Instance[]) {
     const distances: (number | null)[] = [];
     objs.forEach((obj) => {
-      let intersect = obj.intersect(ray);
+      let intersect = obj.shape.intersect(ray);
       let d: any =
         intersect !== null && intersect[0] > 0 && intersect[1] > 0
           ? Math.min(...intersect)
@@ -21,7 +22,7 @@ export class Ray {
       distances.push(d);
     });
 
-    let nearest: Obj | null = null;
+    let nearest: Instance | null = null;
     let min: number = Number.POSITIVE_INFINITY;
     for (
       let i = 0, d = distances[i];

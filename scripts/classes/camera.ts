@@ -1,6 +1,7 @@
 import { Vector3 } from "../modules/vector3";
 
 import { ScreenRatio } from "../interfaces/screen-ratio";
+import { Ray } from "./ray";
 
 export class Camera {
   position: Vector3.T;
@@ -16,5 +17,12 @@ export class Camera {
       right: 1,
       bottom: -1 / this.ratio,
     };
+  }
+
+  generateRay(pixel: Vector3.T): Ray {
+    return new Ray(
+      this.position,
+      Vector3.normalize(Vector3.subtract(pixel, this.position))
+    );
   }
 }

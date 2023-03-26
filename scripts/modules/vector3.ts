@@ -46,6 +46,10 @@ export module Vector3 {
     return [vec[0] * scalar, vec[1] * scalar, vec[2] * scalar];
   }
 
+  export function scaleDivide(vec: Vector3.T, scalar: number): Vector3.T {
+    return [vec[0] / scalar, vec[1] / scalar, vec[2] / scalar];
+  }
+
   export function linalgNorm(vec: Vector3.T): number {
     return Math.sqrt(Vector3.squared(vec));
   }
@@ -66,5 +70,22 @@ export module Vector3 {
 
   export function squared(v: Vector3.T): number {
     return this.dot(v, v);
+  }
+
+  export function reflect(v: Vector3.T, n: Vector3.T): Vector3.T {
+    const dotProduct = Vector3.dot(v, n);
+    const reflectedVector = Vector3.subtract(
+      Vector3.scale(n, 2 * dotProduct),
+      v
+    );
+    return reflectedVector;
+  }
+
+  export function distance(v1: Vector3.T, v2: Vector3.T) {
+    let sqSum = 0;
+    for (let i = 0; i < v1.length; i++) {
+      sqSum += Math.pow(v2[i] - v1[i], 2);
+    }
+    return Math.sqrt(sqSum);
   }
 }
