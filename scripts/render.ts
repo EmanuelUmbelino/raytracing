@@ -8,13 +8,13 @@ import { Scene } from "./classes/scene";
 import { linspace } from "./methods/linspace";
 import { o } from "./modules/o";
 
-const WIDTH = 400,
-  HEIGHT = 300;
+const WIDTH = 800,
+  HEIGHT = 600;
 
 export function render() {
   const date = new Date();
   const antialising = 16;
-  const maxDepth = 3;
+  const maxDepth = 10;
 
   const camera: Camera = new Camera([0, 0, 1], WIDTH, HEIGHT);
 
@@ -61,7 +61,6 @@ export function render() {
     lights: scene.lightSources.length,
   };
   fs.readFile("log.json", "utf8", function (err, fileData) {
-    // Display the file content
     fileData = JSON.parse(fileData);
     fileData[date.toJSON()] = data;
 

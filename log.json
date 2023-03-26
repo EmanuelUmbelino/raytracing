@@ -18,5 +18,15 @@
     "maxDepth": 3,
     "objs": 4,
     "lights": 1
+  },
+  "2023-03-26T16:46:29.729Z": {
+    "date": "26/03/2023, 13:46:29",
+    "executionTimeSec": 13.65,
+    "width": 800,
+    "height": 600,
+    "antialising": 16,
+    "maxDepth": 10,
+    "objs": 4,
+    "lights": 1
   }
 }
