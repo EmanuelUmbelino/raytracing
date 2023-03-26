@@ -8,6 +8,7 @@ import { Ray } from "./ray";
 import { Sphere } from "./sphere";
 
 export class Scene {
+  maxDepth: number;
   ambientLight: Vector3.T;
 
   instances: Instance[] = [];
@@ -17,6 +18,8 @@ export class Scene {
   }
 
   constructor() {
+    this.maxDepth = 3;
+
     this.ambientLight = [0.9, 0.9, 0.9];
 
     const redMaterial: Material = new Material({
@@ -32,7 +35,7 @@ export class Scene {
       diffuse: [0, 0.7, 0],
       specular: [1, 1, 1],
       shininess: 100,
-      reflection: 0.4,
+      reflection: 0.2,
     });
 
     const blueMaterial: Material = new Material({
@@ -48,7 +51,7 @@ export class Scene {
       diffuse: [0.7, 0.7, 0.7],
       specular: [1, 1, 1],
       shininess: 100,
-      reflection: 0.9,
+      reflection: 1,
     });
 
     this.instances.push(
@@ -106,22 +109,38 @@ export class Scene {
   }
 
   traceRay(ray: Ray) {
-    const hit: Hit | null = this.computeIntersection(ray);
-
     let color: Vector3.T = [0, 0, 0];
-    if (hit) {
-      if (hit.instance.light) {
-        color = Vector3.add(
-          this.ambientLight,
-          Vector3.scaleDivide(
-            Vector3.scale(hit.instance.light.color, hit.instance.light.power),
-            Math.pow(hit.distance, 2)
-          )
+    let reflection = 1;
+
+    for (let k = 0; k < this.maxDepth; k++) {
+      const hit: Hit | null = this.computeIntersection(ray);
+      if (hit) {
+        if (hit.instance.light) {
+          color = Vector3.add(
+            this.ambientLight,
+            Vector3.scaleDivide(
+              Vector3.scale(hit.instance.light.color, hit.instance.light.power),
+              Math.pow(hit.distance, 2)
+            )
+          );
+        } else {
+          const illumination: Vector3.T = hit.instance.material.eval(
+            this,
+            hit,
+            ray.origin
+          );
+          color = Vector3.add(color, Vector3.scale(illumination, reflection));
+          reflection *= hit.instance.material.reflection;
+        }
+        ray = new Ray(
+          hit.shiftedPoint,
+          Vector3.reflect(ray.direction, hit.normal)
         );
       } else {
-        color = hit.instance.material.eval(this, hit, ray.origin);
+        break;
       }
     }
+
     return Vector3.scale(Vector3.clip(color, 0, 1), 255);
   }
 }

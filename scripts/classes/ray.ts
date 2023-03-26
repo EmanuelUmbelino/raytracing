@@ -36,14 +36,4 @@ export class Ray {
     }
     return { nearest, min };
   }
-
-  static reflect(ray: Ray, normalToSurface: Vector3.T): Vector3.T {
-    return Vector3.subtract(
-      ray.direction,
-      Vector3.scale(
-        normalToSurface,
-        2 * Vector3.dot(ray.direction, normalToSurface)
-      )
-    );
-  }
 }

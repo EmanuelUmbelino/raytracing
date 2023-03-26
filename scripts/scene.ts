@@ -175,7 +175,7 @@ export function old() {
         reflection = reflection * nearest.material.reflection;
 
         ray.origin = shiftedPoint;
-        ray.direction = Ray.reflect(ray, normalToSurface);
+        ray.direction = Vector3.reflect(ray.direction, normalToSurface);
       }
 
       film.setPixelColor(i, j, Vector3.scale(Vector3.clip(color, 0, 1), 255));

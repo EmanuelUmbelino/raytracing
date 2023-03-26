@@ -30,24 +30,27 @@ export class Material {
   eval(scene: Scene, hit: Hit, origin: Vector3.T): Vector3.T {
     let color = Vector3.multiply(this.ambient, scene.ambientLight);
 
-    const v = Vector3.normalize(Vector3.subtract(origin, hit.pos));
-
-    const shiftedPoint = Vector3.add(hit.pos, Vector3.scale(hit.normal, 1e-5));
+    const viewDirection = Vector3.normalize(Vector3.subtract(origin, hit.pos));
     scene.lightSources.forEach((lightSource) => {
-      const [lightColor, lightDirection] = lightSource.light.radiance(
+      const [lightColor, intersectioToLight] = lightSource.light.radiance(
         scene,
         lightSource.shape.position,
-        shiftedPoint
+        hit.shiftedPoint
       );
       const diffuse = Vector3.scale(
         Vector3.multiply(this.diffuse, lightColor),
-        Vector3.dot(lightDirection, hit.normal)
+        Vector3.dot(intersectioToLight, hit.normal)
       );
 
-      const reflectionDirection = Vector3.reflect(lightDirection, hit.normal);
+      const reflectionDirection = Vector3.normalize(
+        Vector3.add(intersectioToLight, viewDirection)
+      );
       const specular = Vector3.scale(
-        this.specular,
-        Math.pow(Vector3.dot(reflectionDirection, v), this.shininess / 4)
+        Vector3.multiply(this.specular, lightColor),
+        Math.pow(
+          Math.max(0, Vector3.dot(hit.normal, reflectionDirection)),
+          this.shininess
+        )
       );
       color = Vector3.add(color, diffuse, specular);
     });

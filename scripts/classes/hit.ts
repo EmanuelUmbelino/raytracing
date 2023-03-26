@@ -7,6 +7,7 @@ export class Hit {
   backfacing: boolean;
   instance: Instance;
   distance: number;
+  shiftedPoint: Vector3.T;
 
   constructor(
     pos: Vector3.T,
@@ -20,5 +21,7 @@ export class Hit {
     this.backfacing = backfacing;
     this.instance = instance;
     this.distance = distance;
+
+    this.shiftedPoint = Vector3.add(pos, Vector3.scale(normal, 1e-5));
   }
 }

@@ -73,12 +73,7 @@ export module Vector3 {
   }
 
   export function reflect(v: Vector3.T, n: Vector3.T): Vector3.T {
-    const dotProduct = Vector3.dot(v, n);
-    const reflectedVector = Vector3.subtract(
-      Vector3.scale(n, 2 * dotProduct),
-      v
-    );
-    return reflectedVector;
+    return Vector3.subtract(v, Vector3.scale(n, 2 * Vector3.dot(v, n)));
   }
 
   export function distance(v1: Vector3.T, v2: Vector3.T) {
