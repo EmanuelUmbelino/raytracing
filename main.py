@@ -115,4 +115,4 @@ for i, y in enumerate(np.linspace(screen[1], screen[3], height)):
 print("progress: 100 %")
 
 # convert image
-plt.imsave('image.png', image)
+plt.imsave('py-image.png', image)

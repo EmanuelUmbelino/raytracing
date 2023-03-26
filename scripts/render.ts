@@ -33,6 +33,6 @@ export function render() {
   }
   console.log(`progress: 100%`);
 
-  film.saveImage("nova.png");
+  film.saveImage("image.png");
   console.log(`new image generated!\n`);
 }
