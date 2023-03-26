@@ -10,14 +10,20 @@ export class Film {
     h: number;
   };
   image: Vector3.T[][];
+  antialising: number;
 
-  constructor(w: number, h: number) {
+  constructor(w: number, h: number, antialising: number) {
     this.resolution = { w, h };
     this.image = matrix(w, h, () => [0, 0, 0]);
+    this.antialising = antialising;
   }
 
   getSample(i: number, j: number): Vector3.T {
-    return [i + 0.5 / this.resolution.w, j + 0.5 / this.resolution.h, 0];
+    return [
+      i + Math.random() / this.resolution.w,
+      j + Math.random() / this.resolution.h,
+      0,
+    ];
   }
 
   setPixelColor(i: number, j: number, c: Vector3.T) {
