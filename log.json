@@ -1,0 +1,22 @@
+{
+  "2023-03-26T16:44:20.420Z": {
+    "date": "26/03/2023, 13:44:20",
+    "executionTimeSec": 3.237,
+    "width": 400,
+    "height": 300,
+    "antialising": 16,
+    "maxDepth": 3,
+    "objs": 4,
+    "lights": 1
+  },
+  "2023-03-26T16:44:32.172Z": {
+    "date": "26/03/2023, 13:44:32",
+    "executionTimeSec": 3.222,
+    "width": 400,
+    "height": 300,
+    "antialising": 16,
+    "maxDepth": 3,
+    "objs": 4,
+    "lights": 1
+  }
+}

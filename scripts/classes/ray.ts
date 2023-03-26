@@ -1,12 +1,12 @@
 import { Shape } from "./shapes/shape";
-import { Vector3 } from "../modules/vector3";
+import { o } from "../modules/o";
 import { Instance } from "./instance";
 
 export class Ray {
-  origin: Vector3.T;
-  direction: Vector3.T;
+  origin: o.Vector3;
+  direction: o.Vector3;
 
-  constructor(origin: Vector3.T, direction: Vector3.T) {
+  constructor(origin: o.Vector3, direction: o.Vector3) {
     this.origin = origin;
     this.direction = direction;
   }

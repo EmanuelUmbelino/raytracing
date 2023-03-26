@@ -1,14 +1,14 @@
-import { Vector3 } from "../modules/vector3";
+import { o } from "../modules/o";
 
 import { ScreenRatio } from "../interfaces/screen-ratio";
 import { Ray } from "./ray";
 
 export class Camera {
-  position: Vector3.T;
+  position: o.Vector3;
   ratio: number;
   screen: ScreenRatio;
 
-  constructor(position: Vector3.T, width: number, height: number) {
+  constructor(position: o.Vector3, width: number, height: number) {
     this.position = position;
     this.ratio = width / height;
     this.screen = {
@@ -19,10 +19,10 @@ export class Camera {
     };
   }
 
-  generateRay(pixel: Vector3.T): Ray {
+  generateRay(pixel: o.Vector3): Ray {
     return new Ray(
       this.position,
-      Vector3.normalize(Vector3.subtract(pixel, this.position))
+      o.normalize(o.subtract(pixel, this.position))
     );
   }
 }

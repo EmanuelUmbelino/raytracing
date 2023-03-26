@@ -1,0 +1,10 @@
+render started...
+progress: 0%
+progress: 20%
+progress: 40%
+progress: 60%
+progress: 80%
+progress: 100%
+new image generated!
+
+it took 3.670389899969101 sec

@@ -5,6 +5,7 @@
   },
   "dependencies": {
     "@types/node": "^18.15.5",
+    "fs": "^0.0.1-security",
     "gpu.js": "^2.16.0",
     "jimp": "^0.22.7"
   },
