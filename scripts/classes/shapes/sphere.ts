@@ -1,7 +1,7 @@
-import { Vector3 } from "../modules/vector3";
+import { Vector3 } from "../../modules/vector3";
 
 import { Shape } from "./shape";
-import { Ray } from "./ray";
+import { Ray } from "../ray";
 
 export class Sphere implements Shape {
   position: Vector3.T;

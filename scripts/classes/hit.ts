@@ -1,4 +1,5 @@
 import { Vector3 } from "../modules/vector3";
+
 import { Instance } from "./instance";
 
 export class Hit {

@@ -1,6 +1,7 @@
 import { Light } from "./light";
 import { Material } from "./material";
-import { Shape } from "./shape";
+
+import { Shape } from "./shapes/shape";
 
 export class Instance {
   shape: Shape;

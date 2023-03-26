@@ -1,4 +1,5 @@
 import { Vector3 } from "../modules/vector3";
+
 import { Hit } from "./hit";
 import { Ray } from "./ray";
 import { Scene } from "./scene";

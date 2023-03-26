@@ -5,7 +5,9 @@ import { Instance } from "./instance";
 import { Light } from "./light";
 import { Material } from "./material";
 import { Ray } from "./ray";
-import { Sphere } from "./sphere";
+import { Plane } from "./shapes/plane";
+
+import { Sphere } from "./shapes/sphere";
 
 export class Scene {
   maxDepth: number;
@@ -18,7 +20,7 @@ export class Scene {
   }
 
   constructor() {
-    this.maxDepth = 3;
+    this.maxDepth = 10;
 
     this.ambientLight = [0.9, 0.9, 0.9];
 
@@ -68,7 +70,7 @@ export class Scene {
       new Instance(new Sphere([0.1, -0.3, 0], 0.1), blueMaterial)
     );
     this.instances.push(
-      new Instance(new Sphere([0, -9000, 0], 9000 - 0.7), mirrorMaterial)
+      new Instance(new Plane([0, -0.7, 0], [0, 1, 0]), mirrorMaterial)
     );
   }
 
@@ -77,7 +79,8 @@ export class Scene {
     this.instances.forEach((instance) => {
       let intersect = instance.shape.intersect(ray);
       let d: any =
-        intersect !== null && intersect[0] > 0 && intersect[1] > 0
+        intersect !== null &&
+        intersect.filter((el) => el > 0).length === intersect.length
           ? Math.min(...intersect)
           : null;
       distances.push(d);
@@ -100,9 +103,12 @@ export class Scene {
         ray.origin,
         Vector3.scale(ray.direction, min)
       );
-      const normalToSurface = Vector3.normalize(
+      let normalToSurface = Vector3.normalize(
         Vector3.subtract(intersection, instance.shape.position)
       );
+      if (instance.shape instanceof Plane) {
+        normalToSurface = instance.shape.normal;
+      }
       return new Hit(intersection, normalToSurface, false, instance, min);
     }
     return null;

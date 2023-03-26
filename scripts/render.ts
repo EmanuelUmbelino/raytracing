@@ -7,8 +7,8 @@ import { Scene } from "./classes/scene";
 import { linspace } from "./methods/linspace";
 import { Vector3 } from "./modules/vector3";
 
-const WIDTH = 400,
-  HEIGHT = 300;
+const WIDTH = 800,
+  HEIGHT = 600;
 
 export function render() {
   const antialising = 16;
