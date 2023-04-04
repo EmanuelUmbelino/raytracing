@@ -9,12 +9,12 @@ import { Scene } from "./classes/scene";
 
 import { linspace } from "./methods/linspace";
 
-const WIDTH = 800,
-  HEIGHT = 600;
+const WIDTH = 400,
+  HEIGHT = 300;
 
 export function render() {
   const date = new Date();
-  const antialising = 16;
+  const antialising = 4;
   const maxDepth = 10;
 
   const camera: Camera = new Camera([0, 0, 1], WIDTH, HEIGHT);
@@ -65,13 +65,18 @@ export function render() {
     fileData = JSON.parse(fileData);
     fileData[date.toJSON()] = data;
 
-    fs.writeFile("log.json", JSON.stringify(fileData), "utf8", function (err) {
-      if (err) {
-        console.log("An error occured while writing JSON Object to File.");
-        return console.log(err);
-      }
+    fs.writeFile(
+      "log.json",
+      JSON.stringify(fileData, null, 2),
+      "utf8",
+      function (err) {
+        if (err) {
+          console.log("An error occured while writing JSON Object to File.");
+          return console.log(err);
+        }
 
-      console.log("JSON file has been saved.");
-    });
+        console.log("JSON file has been saved.");
+      }
+    );
   });
 }
