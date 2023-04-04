@@ -3,8 +3,13 @@ import { Matrix4 } from "./matrix4";
 export module Vector3 {
   export type T = [number, number, number];
 
+  export function copy(vec: T): T {
+    return [vec[0], vec[1], vec[2]];
+  }
+
   export function add(vec: T, ...vecs: T[]): T {
-    const result: T = [vec[0], vec[1], vec[2]];
+    const result: T = copy(vec);
+
     for (let vec of vecs) {
       result[0] += vec[0];
       result[1] += vec[1];
@@ -14,7 +19,8 @@ export module Vector3 {
   }
 
   export function subtract(vec: T, ...vecs: T[]): T {
-    const result: T = [vec[0], vec[1], vec[2]];
+    const result: T = copy(vec);
+
     for (let vec of vecs) {
       result[0] -= vec[0];
       result[1] -= vec[1];
@@ -24,7 +30,8 @@ export module Vector3 {
   }
 
   export function multiply(vec: T, ...vecs: T[]): T {
-    const result: T = [vec[0], vec[1], vec[2]];
+    const result: T = copy(vec);
+
     for (let vec of vecs) {
       result[0] *= vec[0];
       result[1] *= vec[1];
@@ -57,7 +64,7 @@ export module Vector3 {
   }
 
   export function normalize(vec: T): T {
-    const length: number = this.linalgNorm(vec);
+    const length: number = linalgNorm(vec);
 
     if (length === 0) {
       return vec;
@@ -71,7 +78,7 @@ export module Vector3 {
   }
 
   export function squared(v: T): number {
-    return this.dot(v, v);
+    return dot(v, v);
   }
 
   export function reflect(v: T, n: T): T {

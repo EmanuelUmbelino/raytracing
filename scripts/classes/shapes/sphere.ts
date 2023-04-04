@@ -3,16 +3,18 @@ import { Vector3 } from "../../modules/vector3";
 import { Shape } from "./shape";
 import { Ray } from "../ray";
 
-export class Sphere implements Shape {
+export class Sphere extends Shape {
   position: Vector3.T;
   radius: number;
 
   constructor(position: Vector3.T, radius: number) {
+    super();
+
     this.position = position;
     this.radius = radius;
   }
 
-  intersect(ray: Ray): number[] | null {
+  _intersect(ray: Ray): number[] | null {
     const oc: Vector3.T = Vector3.subtract(ray.origin, this.position);
 
     const a: number = Vector3.squared(ray.direction);

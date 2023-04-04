@@ -60,31 +60,21 @@ export class Scene {
       new Instance(new Sphere([5, 5, 5], 0.1), new Light([1, 1, 1], 100))
     );
 
-    this.instances.push(
-      new Instance(new Sphere([-0.2, 0, -1], 0.7), redMaterial)
-    );
-    this.instances.push(
-      new Instance(new Sphere([-0.3, 0, 0], 0.15), greenMaterial)
-    );
-    this.instances.push(
-      new Instance(new Sphere([0.1, -0.3, 0], 0.1), blueMaterial)
-    );
-    this.instances.push(
-      new Instance(new Plane([0, -0.7, 0], [0, 1, 0]), mirrorMaterial)
-    );
+    const objs = [
+      new Instance(new Sphere([-0.2, 0, -1], 0.7), redMaterial),
+      new Instance(new Sphere([-0.3, 0, 0], 0.15), greenMaterial),
+      new Instance(new Sphere([0.1, -0.3, 0], 0.1), blueMaterial),
+      new Instance(new Plane([0, -0.7, 0], [0, 1, 0]), mirrorMaterial),
+    ];
+    objs[0].shape.scale([1 / 2, 1 / 2, 1]);
+
+    this.instances.push(...objs);
   }
 
   computeIntersection(ray: Ray): Hit | null {
-    const distances: (number | null)[] = [];
-    this.instances.forEach((instance) => {
-      let intersect = instance.shape.intersect(ray);
-      let d: any =
-        intersect !== null &&
-        intersect.filter((el) => el > 0).length === intersect.length
-          ? Math.min(...intersect)
-          : null;
-      distances.push(d);
-    });
+    const distances: (number | null)[] = this.instances.map((instance) =>
+      instance.shape.intersect(ray)
+    );
 
     let instance: Instance | null = null;
     let min: number = Number.POSITIVE_INFINITY;
@@ -103,12 +93,8 @@ export class Scene {
         ray.origin,
         Vector3.scale(ray.direction, min)
       );
-      let normalToSurface = Vector3.normalize(
-        Vector3.subtract(intersection, instance.shape.position)
-      );
-      if (instance.shape instanceof Plane) {
-        normalToSurface = instance.shape.normal;
-      }
+      let normalToSurface = instance.shape.normalIntersect(intersection);
+
       return new Hit(intersection, normalToSurface, false, instance, min);
     }
     return null;

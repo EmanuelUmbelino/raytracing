@@ -12,15 +12,9 @@ export class Ray {
   }
 
   static nearestIntersectedObject(ray: Ray, objs: Instance[]) {
-    const distances: (number | null)[] = [];
-    objs.forEach((obj) => {
-      let intersect = obj.shape.intersect(ray);
-      let d: any =
-        intersect !== null && intersect[0] > 0 && intersect[1] > 0
-          ? Math.min(...intersect)
-          : null;
-      distances.push(d);
-    });
+    const distances: (number | null)[] = objs.map((instance) =>
+      instance.shape.intersect(ray)
+    );
 
     let nearest: Instance | null = null;
     let min: number = Number.POSITIVE_INFINITY;

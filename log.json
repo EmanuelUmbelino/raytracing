@@ -28,5 +28,25 @@
     "maxDepth": 10,
     "objs": 4,
     "lights": 1
+  },
+  "2023-04-04T13:32:23.782Z": {
+    "date": "04/04/2023, 10:32:23",
+    "executionTimeSec": 0.837,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 4,
+    "lights": 1
+  },
+  "2023-04-04T13:34:04.650Z": {
+    "date": "04/04/2023, 10:34:04",
+    "executionTimeSec": 0.84,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 4,
+    "lights": 1
   }
 }
