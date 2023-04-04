@@ -1,17 +1,17 @@
-import { o } from "../modules/o";
-import { Hit } from "./hit";
+import { Vector3 } from "../modules/vector3";
 
+import { Hit } from "./hit";
 import { Instance } from "./instance";
 import { Light } from "./light";
 import { Material } from "./material";
 import { Ray } from "./ray";
-import { Plane } from "./shapes/plane";
 
+import { Plane } from "./shapes/plane";
 import { Sphere } from "./shapes/sphere";
 
 export class Scene {
   maxDepth: number;
-  ambientLight: o.Vector3;
+  ambientLight: Vector3.T;
 
   instances: Instance[] = [];
 
@@ -99,9 +99,12 @@ export class Scene {
       }
     }
     if (instance) {
-      const intersection = o.add(ray.origin, o.scale(ray.direction, min));
-      let normalToSurface = o.normalize(
-        o.subtract(intersection, instance.shape.position)
+      const intersection = Vector3.add(
+        ray.origin,
+        Vector3.scale(ray.direction, min)
+      );
+      let normalToSurface = Vector3.normalize(
+        Vector3.subtract(intersection, instance.shape.position)
       );
       if (instance.shape instanceof Plane) {
         normalToSurface = instance.shape.normal;
@@ -112,35 +115,38 @@ export class Scene {
   }
 
   traceRay(ray: Ray) {
-    let color: o.Vector3 = [0, 0, 0];
+    let color: Vector3.T = [0, 0, 0];
     let reflection = 1;
 
     for (let k = 0; k < this.maxDepth; k++) {
       const hit: Hit | null = this.computeIntersection(ray);
       if (hit) {
         if (hit.instance.light) {
-          color = o.add(
+          color = Vector3.add(
             this.ambientLight,
-            o.scaleDivide(
-              o.scale(hit.instance.light.color, hit.instance.light.power),
+            Vector3.scaleDivide(
+              Vector3.scale(hit.instance.light.color, hit.instance.light.power),
               Math.pow(hit.distance, 2)
             )
           );
         } else {
-          const illumination: o.Vector3 = hit.instance.material.eval(
+          const illumination: Vector3.T = hit.instance.material.eval(
             this,
             hit,
             ray.origin
           );
-          color = o.add(color, o.scale(illumination, reflection));
+          color = Vector3.add(color, Vector3.scale(illumination, reflection));
           reflection *= hit.instance.material.reflection;
         }
-        ray = new Ray(hit.shiftedPoint, o.reflect(ray.direction, hit.normal));
+        ray = new Ray(
+          hit.shiftedPoint,
+          Vector3.reflect(ray.direction, hit.normal)
+        );
       } else {
         break;
       }
     }
 
-    return o.scale(o.clip(color, 0, 1), 255);
+    return Vector3.scale(Vector3.clip(color, 0, 1), 255);
   }
 }
