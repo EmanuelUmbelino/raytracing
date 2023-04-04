@@ -1,6 +1,6 @@
 import * as Jimp from "jimp";
 
-import { o } from "../modules/o";
+import { Vector3 } from "../modules/vector3";
 
 import { matrix } from "../methods/matrix";
 
@@ -9,7 +9,7 @@ export class Film {
     w: number;
     h: number;
   };
-  image: o.Vector3[][];
+  image: Vector3.T[][];
   antialising: number;
 
   constructor(w: number, h: number, antialising: number) {
@@ -18,7 +18,7 @@ export class Film {
     this.antialising = antialising;
   }
 
-  getSample(i: number, j: number): o.Vector3 {
+  getSample(i: number, j: number): Vector3.T {
     return [
       i + Math.random() / this.resolution.w,
       j + Math.random() / this.resolution.h,
@@ -26,7 +26,7 @@ export class Film {
     ];
   }
 
-  setPixelColor(i: number, j: number, c: o.Vector3) {
+  setPixelColor(i: number, j: number, c: Vector3.T) {
     this.image[i][j] = c;
   }
 
@@ -39,7 +39,7 @@ export class Film {
 
       for (let i = 0; i < height; i++) {
         for (let j = 0; j < width; j++) {
-          const color: o.Vector3 = imageData[i][j];
+          const color: Vector3.T = imageData[i][j];
           const hex = Jimp.rgbaToInt(color[0], color[1], color[2], 255);
           image.setPixelColor(hex, j, i);
         }

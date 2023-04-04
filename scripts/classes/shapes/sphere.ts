@@ -1,23 +1,23 @@
-import { o } from "../../modules/o";
+import { Vector3 } from "../../modules/vector3";
 
 import { Shape } from "./shape";
 import { Ray } from "../ray";
 
 export class Sphere implements Shape {
-  position: o.Vector3;
+  position: Vector3.T;
   radius: number;
 
-  constructor(position: o.Vector3, radius: number) {
+  constructor(position: Vector3.T, radius: number) {
     this.position = position;
     this.radius = radius;
   }
 
   intersect(ray: Ray): number[] | null {
-    const oc: o.Vector3 = o.subtract(ray.origin, this.position);
+    const oc: Vector3.T = Vector3.subtract(ray.origin, this.position);
 
-    const a: number = o.squared(ray.direction);
-    const b: number = 2 * o.dot(ray.direction, oc);
-    const c: number = o.squared(oc) - this.radius * this.radius;
+    const a: number = Vector3.squared(ray.direction);
+    const b: number = 2 * Vector3.dot(ray.direction, oc);
+    const c: number = Vector3.squared(oc) - this.radius * this.radius;
 
     const delta: number = b * b - 4 * a * c;
 

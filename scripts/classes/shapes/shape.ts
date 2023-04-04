@@ -1,9 +1,9 @@
-import { o } from "../../modules/o";
+import { Vector3 } from "../../modules/vector3";
 
 import { Ray } from "../ray";
 
 export abstract class Shape {
-  position: o.Vector3;
+  position: Vector3.T;
 
   abstract intersect(ray: Ray): number[] | null;
 }

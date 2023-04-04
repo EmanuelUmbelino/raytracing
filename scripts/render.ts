@@ -1,12 +1,13 @@
 import { GPU } from "gpu.js";
 import * as fs from "fs";
 
+import { Vector3 } from "./modules/vector3";
+
 import { Camera } from "./classes/camera";
 import { Film } from "./classes/film";
 import { Scene } from "./classes/scene";
 
 import { linspace } from "./methods/linspace";
-import { o } from "./modules/o";
 
 const WIDTH = 800,
   HEIGHT = 600;
@@ -33,13 +34,13 @@ export function render() {
     }
 
     for (let j = 0; j < WIDTH; j++) {
-      let color: o.Vector3 = [0, 0, 0];
+      let color: Vector3.T = [0, 0, 0];
       for (let k = 1; k < antialising; k++) {
         const pixel = film.getSample(xs[j], ys[i]);
         const ray = camera.generateRay(pixel);
-        color = o.add(color, scene.traceRay(ray));
+        color = Vector3.add(color, scene.traceRay(ray));
       }
-      film.setPixelColor(i, j, o.scaleDivide(color, antialising));
+      film.setPixelColor(i, j, Vector3.scaleDivide(color, antialising));
     }
   }
   const end = performance.now();

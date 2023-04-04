@@ -1,20 +1,20 @@
-import { o } from "../modules/o";
+import { Vector3 } from "../modules/vector3";
 
 import { Hit } from "./hit";
 import { Scene } from "./scene";
 
 export class Material {
-  ambient: o.Vector3;
-  diffuse: o.Vector3;
-  specular: o.Vector3;
+  ambient: Vector3.T;
+  diffuse: Vector3.T;
+  specular: Vector3.T;
 
   shininess: number;
   reflection: number;
 
   constructor(d: {
-    ambient: o.Vector3;
-    diffuse: o.Vector3;
-    specular: o.Vector3;
+    ambient: Vector3.T;
+    diffuse: Vector3.T;
+    specular: Vector3.T;
 
     shininess: number;
     reflection: number;
@@ -27,32 +27,32 @@ export class Material {
     this.reflection = d.reflection;
   }
 
-  eval(scene: Scene, hit: Hit, origin: o.Vector3): o.Vector3 {
-    let color = o.multiply(this.ambient, scene.ambientLight);
+  eval(scene: Scene, hit: Hit, origin: Vector3.T): Vector3.T {
+    let color = Vector3.multiply(this.ambient, scene.ambientLight);
 
-    const viewDirection = o.normalize(o.subtract(origin, hit.pos));
+    const viewDirection = Vector3.normalize(Vector3.subtract(origin, hit.pos));
     scene.lightSources.forEach((lightSource) => {
       const [lightColor, intersectioToLight] = lightSource.light.radiance(
         scene,
         lightSource.shape.position,
         hit.shiftedPoint
       );
-      const diffuse = o.scale(
-        o.multiply(this.diffuse, lightColor),
-        o.dot(intersectioToLight, hit.normal)
+      const diffuse = Vector3.scale(
+        Vector3.multiply(this.diffuse, lightColor),
+        Vector3.dot(intersectioToLight, hit.normal)
       );
 
-      const reflectionDirection = o.normalize(
-        o.add(intersectioToLight, viewDirection)
+      const reflectionDirection = Vector3.normalize(
+        Vector3.add(intersectioToLight, viewDirection)
       );
-      const specular = o.scale(
-        o.multiply(this.specular, lightColor),
+      const specular = Vector3.scale(
+        Vector3.multiply(this.specular, lightColor),
         Math.pow(
-          Math.max(0, o.dot(hit.normal, reflectionDirection)),
+          Math.max(0, Vector3.dot(hit.normal, reflectionDirection)),
           this.shininess
         )
       );
-      color = o.add(color, diffuse, specular);
+      color = Vector3.add(color, diffuse, specular);
     });
 
     return color;

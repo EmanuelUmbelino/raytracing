@@ -1,18 +1,18 @@
-import { o } from "../modules/o";
+import { Vector3 } from "../modules/vector3";
 
 import { Instance } from "./instance";
 
 export class Hit {
-  pos: o.Vector3;
-  normal: o.Vector3;
+  pos: Vector3.T;
+  normal: Vector3.T;
   backfacing: boolean;
   instance: Instance;
   distance: number;
-  shiftedPoint: o.Vector3;
+  shiftedPoint: Vector3.T;
 
   constructor(
-    pos: o.Vector3,
-    normal: o.Vector3,
+    pos: Vector3.T,
+    normal: Vector3.T,
     backfacing: boolean,
     instance: Instance,
     distance: number
@@ -23,6 +23,6 @@ export class Hit {
     this.instance = instance;
     this.distance = distance;
 
-    this.shiftedPoint = o.add(pos, o.scale(normal, 1e-5));
+    this.shiftedPoint = Vector3.add(pos, Vector3.scale(normal, 1e-5));
   }
 }
