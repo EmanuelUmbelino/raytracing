@@ -17,6 +17,18 @@ export abstract class Shape {
   }
 
   intersect(ray: Ray): number | null {
+    if (!this.invUpdated) {
+      this.matrixInv = Matrix4.inverse(this.matrix);
+      this.invUpdated = true;
+    }
+    if (this.matrixInv) {
+      const localOrigin = Vector3.applyMatrix4(ray.origin, this.matrixInv);
+      const localDirection = Vector3.normalize(
+        Vector3.applyMatrix4(ray.direction, this.matrixInv)
+      );
+      ray = new Ray(localOrigin, localDirection);
+    }
+
     const distance = this._intersect(ray);
     if (
       distance !== null &&
@@ -28,17 +40,17 @@ export abstract class Shape {
   }
 
   rotate(angleX?: number, angleY?: number, angleZ?: number) {
-    if (angleX)
+    if (angleX !== undefined && angleX !== 0)
       this.matrix = Matrix4.multiply(
         this.matrix,
         Matrix4.makeRotationX(angleX)
       );
-    if (angleY)
+    if (angleY !== undefined && angleY !== 0)
       this.matrix = Matrix4.multiply(
         this.matrix,
         Matrix4.makeRotationY(angleY)
       );
-    if (angleZ)
+    if (angleZ !== undefined && angleZ !== 0)
       this.matrix = Matrix4.multiply(
         this.matrix,
         Matrix4.makeRotationY(angleZ)

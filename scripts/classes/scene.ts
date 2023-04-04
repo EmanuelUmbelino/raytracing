@@ -22,14 +22,14 @@ export class Scene {
   constructor(maxDepth: number = 3) {
     this.maxDepth = maxDepth;
 
-    this.ambientLight = [0.9, 0.9, 0.9];
+    this.ambientLight = [1, 1, 1];
 
     const redMaterial: Material = new Material({
       ambient: [0.1, 0, 0],
       diffuse: [0.7, 0, 0],
       specular: [1, 1, 1],
       shininess: 100,
-      reflection: 0,
+      reflection: 0.3,
     });
 
     const greenMaterial: Material = new Material({
@@ -37,7 +37,7 @@ export class Scene {
       diffuse: [0, 0.7, 0],
       specular: [1, 1, 1],
       shininess: 100,
-      reflection: 0.2,
+      reflection: 0.4,
     });
 
     const blueMaterial: Material = new Material({
@@ -45,7 +45,7 @@ export class Scene {
       diffuse: [0.3, 0.3, 0.9],
       specular: [1, 1, 1],
       shininess: 100,
-      reflection: 0.6,
+      reflection: 0,
     });
 
     const mirrorMaterial: Material = new Material({
@@ -61,12 +61,15 @@ export class Scene {
     );
 
     const objs = [
-      new Instance(new Sphere([-0.2, 0, -1], 0.7), redMaterial),
-      new Instance(new Sphere([-0.3, 0, 0], 0.15), greenMaterial),
-      new Instance(new Sphere([0.1, -0.3, 0], 0.1), blueMaterial),
-      new Instance(new Plane([0, -0.7, 0], [0, 1, 0]), mirrorMaterial),
+      new Instance(new Sphere([-0.2, 0, -0.5], 0.35), redMaterial),
+      new Instance(new Sphere([-0.3, -0.15, 0], 0.15), greenMaterial),
+      new Instance(new Sphere([0.1, -0.5, 0], 0.1), blueMaterial),
+      new Instance(new Plane([0, -0.6, 0], [0, 1, 0]), mirrorMaterial),
     ];
-    objs[0].shape.scale([1 / 2, 1 / 2, 1]);
+    objs[0].shape.scale([2, 1, 1]);
+    objs[0].shape.rotate(0.2, 0.4, 0.2);
+
+    objs[1].shape.scale([1, 2, 1]);
 
     this.instances.push(...objs);
   }
@@ -89,11 +92,19 @@ export class Scene {
       }
     }
     if (instance) {
-      const intersection = Vector3.add(
+      let intersection = Vector3.add(
         ray.origin,
         Vector3.scale(ray.direction, min)
       );
+
       let normalToSurface = instance.shape.normalIntersect(intersection);
+
+      if (instance.shape.matrixInv) {
+        intersection = Vector3.applyMatrix4(
+          intersection,
+          instance.shape.matrixInv
+        );
+      }
 
       return new Hit(intersection, normalToSurface, false, instance, min);
     }
