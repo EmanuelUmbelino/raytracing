@@ -1408,5 +1408,205 @@
     "maxDepth": 10,
     "objs": 7,
     "lights": 1
+  },
+  "2023-04-05T16:32:22.474Z": {
+    "date": "05/04/2023, 13:32:22",
+    "executionTimeSec": 3.68,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T16:34:36.496Z": {
+    "date": "05/04/2023, 13:34:36",
+    "executionTimeSec": 3.673,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T16:35:29.572Z": {
+    "date": "05/04/2023, 13:35:29",
+    "executionTimeSec": 3.811,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T16:42:44.489Z": {
+    "date": "05/04/2023, 13:42:44",
+    "executionTimeSec": 4.995,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T16:56:48.387Z": {
+    "date": "05/04/2023, 13:56:48",
+    "executionTimeSec": 1.985,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T16:57:20.723Z": {
+    "date": "05/04/2023, 13:57:20",
+    "executionTimeSec": 2.202,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T16:58:37.297Z": {
+    "date": "05/04/2023, 13:58:37",
+    "executionTimeSec": 3.997,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-05T16:59:17.692Z": {
+    "date": "05/04/2023, 13:59:17",
+    "executionTimeSec": 3.386,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-05T16:59:57.362Z": {
+    "date": "05/04/2023, 13:59:57",
+    "executionTimeSec": 2.859,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-05T17:00:16.651Z": {
+    "date": "05/04/2023, 14:00:16",
+    "executionTimeSec": 3.186,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-05T17:00:24.959Z": {
+    "date": "05/04/2023, 14:00:24",
+    "executionTimeSec": 3.095,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-05T17:00:38.446Z": {
+    "date": "05/04/2023, 14:00:38",
+    "executionTimeSec": 3.029,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-05T17:01:25.495Z": {
+    "date": "05/04/2023, 14:01:25",
+    "executionTimeSec": 2.944,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-05T17:01:56.166Z": {
+    "date": "05/04/2023, 14:01:56",
+    "executionTimeSec": 3.628,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-05T17:02:35.294Z": {
+    "date": "05/04/2023, 14:02:35",
+    "executionTimeSec": 2.868,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-05T17:03:25.324Z": {
+    "date": "05/04/2023, 14:03:25",
+    "executionTimeSec": 3.019,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-05T17:03:46.410Z": {
+    "date": "05/04/2023, 14:03:46",
+    "executionTimeSec": 3.126,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-05T17:03:59.191Z": {
+    "date": "05/04/2023, 14:03:59",
+    "executionTimeSec": 2.969,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-05T17:04:54.441Z": {
+    "date": "05/04/2023, 14:04:54",
+    "executionTimeSec": 3.252,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-05T17:08:56.989Z": {
+    "date": "05/04/2023, 14:08:56",
+    "executionTimeSec": 65.182,
+    "width": 800,
+    "height": 600,
+    "antialising": 16,
+    "maxDepth": 10,
+    "objs": 8,
+    "lights": 1
   }
 }

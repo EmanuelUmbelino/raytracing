@@ -1,3 +1,4 @@
+import { Matrix4 } from "../modules/matrix4";
 import { Vector3 } from "../modules/vector3";
 
 import { Hit } from "./hit";
@@ -6,7 +7,7 @@ import { Light } from "./light";
 import { Material } from "./material";
 import { Ray } from "./ray";
 
-import { Cube } from "./shapes/cube";
+import { Box } from "./shapes/box";
 import { Plane } from "./shapes/plane";
 import { Sphere } from "./shapes/sphere";
 
@@ -62,24 +63,24 @@ export class Scene {
     );
 
     const objs = [
-      new Instance(new Sphere([-0.2, 0, -0.5], 0.35), redMaterial),
-      new Instance(new Sphere([-0.3, -0.15, 0], 0.15), greenMaterial),
-      new Instance(new Sphere([0.1, -0.5, 0], 0.1), blueMaterial),
+      new Instance(new Sphere([-0.2, 0, -1.4], 0.3), redMaterial),
+      new Instance(new Sphere([-0.3, -0.15, -0.5], 0.15), greenMaterial),
+      new Instance(new Sphere([0.1, -0.5, -0.5], 0.15), blueMaterial),
 
-      new Instance(new Cube([0.2, -0.6, -0.5], [0.5, -0.3, -0.2]), redMaterial),
+      new Instance(new Box([0.2, -0.6, -0.5], [0.5, -0.3, -0.2]), redMaterial),
 
-      new Instance(
-        new Cube([-1.5, -0.6, -3], [-1.4, 0.8, -0.6]),
-        mirrorMaterial
-      ),
-      new Instance(new Cube([1.4, -0.6, -3], [1.5, 0.8, -0.6]), greenMaterial),
+      new Instance(new Box([-1.3, -0.6, -3.3], [1.3, 0.8, -3]), mirrorMaterial),
+      new Instance(new Box([-1.5, -0.6, -3], [-1.4, 0.8, -0.6]), redMaterial),
+      new Instance(new Box([1.4, -0.6, -3], [1.5, 0.8, -0.6]), greenMaterial),
 
-      new Instance(new Plane([0, -0.6, 0], [0, 1, 0]), mirrorMaterial),
+      new Instance(new Plane([0, -0.65, 0], [0, 1, 0]), mirrorMaterial),
     ];
     objs[0].shape.scale([1.5, 1, 1]);
     objs[0].shape.rotate(0.2, 0.4, 0.2);
 
     objs[1].shape.scale([1, 2, 1]);
+
+    objs[2].shape.scale([1, 1, 2]);
 
     objs[3].shape.rotate(0, Math.PI / 4, 0);
 
@@ -115,6 +116,10 @@ export class Scene {
         intersection = Vector3.applyMatrix4(
           intersection,
           instance.shape.matrixInv
+        );
+        normalToSurface = Vector3.applyMatrix4(
+          normalToSurface,
+          Matrix4.transpose(instance.shape.matrixInv)
         );
       }
 

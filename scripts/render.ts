@@ -14,7 +14,7 @@ const WIDTH = 400,
 
 export function render() {
   const date = new Date();
-  const antialising = 4;
+  const antialising = 2;
   const maxDepth = 10;
 
   const camera: Camera = new Camera([0, 0, 1], WIDTH, HEIGHT);

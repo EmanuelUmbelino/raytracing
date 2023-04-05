@@ -3,7 +3,7 @@ import { Vector3 } from "../../modules/vector3";
 import { Shape } from "./shape";
 import { Ray } from "../ray";
 
-export class Cube extends Shape {
+export class Box extends Shape {
   pMin: Vector3.T;
   pMax: Vector3.T;
 
@@ -17,18 +17,20 @@ export class Cube extends Shape {
   normalIntersect(intersection: Vector3.T): Vector3.T {
     const epsilon = 0.0001;
 
-    const center = Vector3.scale(Vector3.add(this.pMin, this.pMax), 0.5);
-    const size = Vector3.subtract(this.pMax, this.pMin);
-    const halfSize = Vector3.scale(size, 0.5);
-    const offset = Vector3.subtract(intersection, center);
-
-    const direction: Vector3.T = [
-      Math.abs(offset[0]) - halfSize[0] < epsilon ? Math.sign(offset[0]) : 0,
-      Math.abs(offset[1]) - halfSize[1] < epsilon ? Math.sign(offset[1]) : 0,
-      Math.abs(offset[2]) - halfSize[2] < epsilon ? Math.sign(offset[2]) : 0,
-    ];
-
-    return Vector3.normalize(direction);
+    if (Math.abs(intersection[0] - this.pMin[0]) < epsilon) {
+      return [-1, 0, 0];
+    } else if (Math.abs(intersection[0] - this.pMax[0]) < epsilon) {
+      return [1, 0, 0];
+    } else if (Math.abs(intersection[1] - this.pMin[1]) < epsilon) {
+      return [0, -1, 0];
+    } else if (Math.abs(intersection[1] - this.pMax[1]) < epsilon) {
+      return [0, 1, 0];
+    } else if (Math.abs(intersection[2] - this.pMin[2]) < epsilon) {
+      return [0, 0, -1];
+    } else if (Math.abs(intersection[2] - this.pMax[2]) < epsilon) {
+      return [0, 0, 1];
+    }
+    return [0, 0, 0];
   }
 
   _intersect(ray: Ray): number[] | null {
