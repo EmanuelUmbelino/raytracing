@@ -3,31 +3,52 @@ import { Vector3 } from "../../modules/vector3";
 import { Shape } from "./shape";
 import { Ray } from "../ray";
 
-export class Sphere extends Shape {
-  position: Vector3.T;
-  radius: number;
+export class Cube extends Shape {
+  pMin: Vector3.T;
+  pMax: Vector3.T;
 
-  constructor(position: Vector3.T, radius: number) {
+  constructor(pMin: Vector3.T, pMax: Vector3.T) {
     super();
 
-    this.position = position;
-    this.radius = radius;
+    this.pMin = pMin;
+    this.pMax = pMax;
+  }
+
+  normalIntersect(intersection: Vector3.T): Vector3.T {
+    const epsilon = 0.0001;
+
+    const center = Vector3.scale(Vector3.add(this.pMin, this.pMax), 0.5);
+    const size = Vector3.subtract(this.pMax, this.pMin);
+    const halfSize = Vector3.scale(size, 0.5);
+    const offset = Vector3.subtract(intersection, center);
+
+    const direction: Vector3.T = [
+      Math.abs(offset[0]) - halfSize[0] < epsilon ? Math.sign(offset[0]) : 0,
+      Math.abs(offset[1]) - halfSize[1] < epsilon ? Math.sign(offset[1]) : 0,
+      Math.abs(offset[2]) - halfSize[2] < epsilon ? Math.sign(offset[2]) : 0,
+    ];
+
+    return Vector3.normalize(direction);
   }
 
   _intersect(ray: Ray): number[] | null {
-    const oc: Vector3.T = Vector3.subtract(ray.origin, this.position);
+    const t0: Vector3.T = Vector3.divide(
+      Vector3.subtract(this.pMin, ray.origin),
+      ray.direction
+    );
+    const t1: Vector3.T = Vector3.divide(
+      Vector3.subtract(this.pMax, ray.origin),
+      ray.direction
+    );
 
-    const a: number = Vector3.squared(ray.direction);
-    const b: number = 2 * Vector3.dot(ray.direction, oc);
-    const c: number = Vector3.squared(oc) - this.radius * this.radius;
+    const tNear: Vector3.T = Vector3.min(t0, t1);
+    const tFar: Vector3.T = Vector3.max(t0, t1);
 
-    const delta: number = b * b - 4 * a * c;
+    const tMin: number = Math.max(...tNear);
+    const tMax: number = Math.min(...tFar);
 
-    if (delta > 0) {
-      const t1: number = (-b + Math.sqrt(delta)) / (2 * a);
-      const t2: number = (-b - Math.sqrt(delta)) / (2 * a);
-
-      return [t1, t2];
+    if (tMin <= tMax) {
+      return [tMin, tMax];
     }
     return null;
   }

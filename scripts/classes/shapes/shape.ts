@@ -12,9 +12,7 @@ export abstract class Shape {
 
   protected abstract _intersect(ray: Ray): number[] | null;
 
-  normalIntersect(intersection: Vector3.T): Vector3.T {
-    return Vector3.normalize(Vector3.subtract(intersection, this.position));
-  }
+  abstract normalIntersect(intersection: Vector3.T): Vector3.T;
 
   intersect(ray: Ray): number | null {
     if (!this.invUpdated) {

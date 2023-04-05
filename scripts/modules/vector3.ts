@@ -40,6 +40,17 @@ export module Vector3 {
     return result;
   }
 
+  export function divide(vec: T, ...vecs: T[]): T {
+    const result: T = copy(vec);
+
+    for (let vec of vecs) {
+      result[0] /= vec[0];
+      result[1] /= vec[1];
+      result[2] /= vec[2];
+    }
+    return result;
+  }
+
   export function clip(vec: T, min: number, max: number): T {
     for (const p in vec) {
       if (vec[p] < min) {
@@ -91,6 +102,22 @@ export module Vector3 {
       sqSum += Math.pow(v2[i] - v1[i], 2);
     }
     return Math.sqrt(sqSum);
+  }
+
+  export function min(v1: T, v2: T): T {
+    return [
+      Math.min(v1[0], v2[0]),
+      Math.min(v1[1], v2[1]),
+      Math.min(v1[2], v2[2]),
+    ];
+  }
+
+  export function max(v1: T, v2: T): T {
+    return [
+      Math.max(v1[0], v2[0]),
+      Math.max(v1[1], v2[1]),
+      Math.max(v1[2], v2[2]),
+    ];
   }
 
   export function applyMatrix4(vector: T, matrix: Matrix4.T): T {

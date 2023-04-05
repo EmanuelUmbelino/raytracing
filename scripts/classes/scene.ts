@@ -6,6 +6,7 @@ import { Light } from "./light";
 import { Material } from "./material";
 import { Ray } from "./ray";
 
+import { Cube } from "./shapes/cube";
 import { Plane } from "./shapes/plane";
 import { Sphere } from "./shapes/sphere";
 
@@ -64,12 +65,23 @@ export class Scene {
       new Instance(new Sphere([-0.2, 0, -0.5], 0.35), redMaterial),
       new Instance(new Sphere([-0.3, -0.15, 0], 0.15), greenMaterial),
       new Instance(new Sphere([0.1, -0.5, 0], 0.1), blueMaterial),
+
+      new Instance(new Cube([0.2, -0.6, -0.5], [0.5, -0.3, -0.2]), redMaterial),
+
+      new Instance(
+        new Cube([-1.5, -0.6, -3], [-1.4, 0.8, -0.6]),
+        mirrorMaterial
+      ),
+      new Instance(new Cube([1.4, -0.6, -3], [1.5, 0.8, -0.6]), greenMaterial),
+
       new Instance(new Plane([0, -0.6, 0], [0, 1, 0]), mirrorMaterial),
     ];
-    objs[0].shape.scale([2, 1, 1]);
+    objs[0].shape.scale([1.5, 1, 1]);
     objs[0].shape.rotate(0.2, 0.4, 0.2);
 
     objs[1].shape.scale([1, 2, 1]);
+
+    objs[3].shape.rotate(0, Math.PI / 4, 0);
 
     this.instances.push(...objs);
   }

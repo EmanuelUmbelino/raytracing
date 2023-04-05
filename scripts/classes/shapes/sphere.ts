@@ -14,6 +14,10 @@ export class Sphere extends Shape {
     this.radius = radius;
   }
 
+  normalIntersect(intersection: Vector3.T): Vector3.T {
+    return Vector3.normalize(Vector3.subtract(intersection, this.position));
+  }
+
   _intersect(ray: Ray): number[] | null {
     const oc: Vector3.T = Vector3.subtract(ray.origin, this.position);
 

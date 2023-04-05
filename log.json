@@ -1018,5 +1018,395 @@
     "maxDepth": 10,
     "objs": 4,
     "lights": 1
+  },
+  "2023-04-05T00:30:58.705Z": {
+    "date": "04/04/2023, 21:30:58",
+    "executionTimeSec": 1.09,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 5,
+    "lights": 1
+  },
+  "2023-04-05T00:32:11.930Z": {
+    "date": "04/04/2023, 21:32:11",
+    "executionTimeSec": 1.163,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 5,
+    "lights": 1
+  },
+  "2023-04-05T00:32:32.908Z": {
+    "date": "04/04/2023, 21:32:32",
+    "executionTimeSec": 1.157,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 5,
+    "lights": 1
+  },
+  "2023-04-05T00:33:15.647Z": {
+    "date": "04/04/2023, 21:33:15",
+    "executionTimeSec": 1.101,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 5,
+    "lights": 1
+  },
+  "2023-04-05T00:33:25.073Z": {
+    "date": "04/04/2023, 21:33:25",
+    "executionTimeSec": 1.084,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 5,
+    "lights": 1
+  },
+  "2023-04-05T00:34:00.193Z": {
+    "date": "04/04/2023, 21:34:00",
+    "executionTimeSec": 2.091,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 5,
+    "lights": 1
+  },
+  "2023-04-05T00:34:22.679Z": {
+    "date": "04/04/2023, 21:34:22",
+    "executionTimeSec": 1.356,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 5,
+    "lights": 1
+  },
+  "2023-04-05T00:34:39.716Z": {
+    "date": "04/04/2023, 21:34:39",
+    "executionTimeSec": 2.018,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 5,
+    "lights": 1
+  },
+  "2023-04-05T00:35:01.126Z": {
+    "date": "04/04/2023, 21:35:01",
+    "executionTimeSec": 1.977,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 5,
+    "lights": 1
+  },
+  "2023-04-05T00:35:13.033Z": {
+    "date": "04/04/2023, 21:35:13",
+    "executionTimeSec": 1.902,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 5,
+    "lights": 1
+  },
+  "2023-04-05T00:35:47.364Z": {
+    "date": "04/04/2023, 21:35:47",
+    "executionTimeSec": 1.877,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 5,
+    "lights": 1
+  },
+  "2023-04-05T00:36:11.090Z": {
+    "date": "04/04/2023, 21:36:11",
+    "executionTimeSec": 3.22,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 6,
+    "lights": 1
+  },
+  "2023-04-05T00:36:23.676Z": {
+    "date": "04/04/2023, 21:36:23",
+    "executionTimeSec": 3.033,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 6,
+    "lights": 1
+  },
+  "2023-04-05T00:36:54.028Z": {
+    "date": "04/04/2023, 21:36:54",
+    "executionTimeSec": 3.057,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 6,
+    "lights": 1
+  },
+  "2023-04-05T00:37:18.597Z": {
+    "date": "04/04/2023, 21:37:18",
+    "executionTimeSec": 2.981,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 6,
+    "lights": 1
+  },
+  "2023-04-05T00:38:19.883Z": {
+    "date": "04/04/2023, 21:38:19",
+    "executionTimeSec": 3.547,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T00:38:39.023Z": {
+    "date": "04/04/2023, 21:38:39",
+    "executionTimeSec": 4.555,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T00:39:09.186Z": {
+    "date": "04/04/2023, 21:39:09",
+    "executionTimeSec": 3.312,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T00:39:44.066Z": {
+    "date": "04/04/2023, 21:39:44",
+    "executionTimeSec": 3.477,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T00:40:09.998Z": {
+    "date": "04/04/2023, 21:40:09",
+    "executionTimeSec": 3.297,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T00:40:34.990Z": {
+    "date": "04/04/2023, 21:40:34",
+    "executionTimeSec": 3.595,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T00:41:03.596Z": {
+    "date": "04/04/2023, 21:41:03",
+    "executionTimeSec": 4.039,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T00:41:23.226Z": {
+    "date": "04/04/2023, 21:41:23",
+    "executionTimeSec": 3.795,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T00:41:49.022Z": {
+    "date": "04/04/2023, 21:41:49",
+    "executionTimeSec": 3.3,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T00:42:22.811Z": {
+    "date": "04/04/2023, 21:42:22",
+    "executionTimeSec": 3.532,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T00:42:39.180Z": {
+    "date": "04/04/2023, 21:42:39",
+    "executionTimeSec": 3.84,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T00:43:03.337Z": {
+    "date": "04/04/2023, 21:43:03",
+    "executionTimeSec": 3.844,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T00:43:35.502Z": {
+    "date": "04/04/2023, 21:43:35",
+    "executionTimeSec": 4,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T00:43:56.837Z": {
+    "date": "04/04/2023, 21:43:56",
+    "executionTimeSec": 3.752,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T00:44:23.129Z": {
+    "date": "04/04/2023, 21:44:23",
+    "executionTimeSec": 3.945,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T00:44:40.878Z": {
+    "date": "04/04/2023, 21:44:40",
+    "executionTimeSec": 3.799,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T00:44:55.985Z": {
+    "date": "04/04/2023, 21:44:55",
+    "executionTimeSec": 3.711,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T00:46:11.762Z": {
+    "date": "04/04/2023, 21:46:11",
+    "executionTimeSec": 3.88,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T00:46:34.779Z": {
+    "date": "04/04/2023, 21:46:34",
+    "executionTimeSec": 4.378,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T00:46:54.280Z": {
+    "date": "04/04/2023, 21:46:54",
+    "executionTimeSec": 3.732,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T00:47:12.719Z": {
+    "date": "04/04/2023, 21:47:12",
+    "executionTimeSec": 3.797,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T00:47:34.761Z": {
+    "date": "04/04/2023, 21:47:34",
+    "executionTimeSec": 3.657,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T00:48:28.711Z": {
+    "date": "04/04/2023, 21:48:28",
+    "executionTimeSec": 3.701,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
+  },
+  "2023-04-05T00:48:57.051Z": {
+    "date": "04/04/2023, 21:48:57",
+    "executionTimeSec": 4.075,
+    "width": 400,
+    "height": 300,
+    "antialising": 4,
+    "maxDepth": 10,
+    "objs": 7,
+    "lights": 1
   }
 }
