@@ -10,6 +10,6 @@ const server = http.createServer((req, res) => {
   res.end("Hello World");
 });
 server.listen(port, hostname, () => {
-  render();
+  render(1280, 720, 16, 10);
   server.close();
 });

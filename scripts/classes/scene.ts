@@ -27,7 +27,7 @@ export class Scene {
     this.ambientLight = [1, 1, 1];
 
     const redMaterial: Material = new Material({
-      ambient: [0.1, 0, 0],
+      ambient: [0.2, 0, 0],
       diffuse: [0.7, 0, 0],
       specular: [1, 1, 1],
       shininess: 100,
@@ -35,7 +35,7 @@ export class Scene {
     });
 
     const greenMaterial: Material = new Material({
-      ambient: [0, 0.1, 0],
+      ambient: [0, 0.2, 0],
       diffuse: [0, 0.7, 0],
       specular: [1, 1, 1],
       shininess: 100,
@@ -43,7 +43,7 @@ export class Scene {
     });
 
     const blueMaterial: Material = new Material({
-      ambient: [0, 0, 0.1],
+      ambient: [0, 0, 0.2],
       diffuse: [0.3, 0.3, 0.9],
       specular: [1, 1, 1],
       shininess: 100,
@@ -51,7 +51,7 @@ export class Scene {
     });
 
     const mirrorMaterial: Material = new Material({
-      ambient: [0.1, 0.1, 0.1],
+      ambient: [0.3, 0.3, 0.3],
       diffuse: [0.7, 0.7, 0.7],
       specular: [1, 1, 1],
       shininess: 100,
@@ -59,30 +59,30 @@ export class Scene {
     });
 
     this.instances.push(
-      new Instance(new Sphere([5, 5, 5], 0.1), new Light([1, 1, 1], 100))
+      new Instance(new Sphere([5, 5, -10], 0.3), new Light([1, 1, 1], 100))
     );
 
     const objs = [
-      new Instance(new Sphere([-0.2, 0, -1.4], 0.3), redMaterial),
-      new Instance(new Sphere([-0.3, -0.15, -0.5], 0.15), greenMaterial),
-      new Instance(new Sphere([0.1, -0.5, -0.5], 0.15), blueMaterial),
+      new Instance(new Sphere([-2, 0, -20], 3), redMaterial),
+      new Instance(new Sphere([-3, -1.5, -15], 1.5), greenMaterial),
+      new Instance(new Sphere([1, -4, -15], 1.5), blueMaterial),
 
-      new Instance(new Box([0.2, -0.6, -0.5], [0.5, -0.3, -0.2]), redMaterial),
+      new Instance(new Box([2, -6, -13], [5, -3, -11]), redMaterial),
 
-      new Instance(new Box([-1.3, -0.6, -3.3], [1.3, 0.8, -3]), mirrorMaterial),
-      new Instance(new Box([-1.5, -0.6, -3], [-1.4, 0.8, -0.6]), redMaterial),
-      new Instance(new Box([1.4, -0.6, -3], [1.5, 0.8, -0.6]), greenMaterial),
+      new Instance(new Box([-11, -6, -26], [11, 8, -29]), mirrorMaterial),
+      new Instance(new Box([-13, -6, -25], [-12, 8, -5]), redMaterial),
+      new Instance(new Box([12, -6, -25], [13, 8, -5]), greenMaterial),
 
-      new Instance(new Plane([0, -0.65, 0], [0, 1, 0]), mirrorMaterial),
+      new Instance(new Plane([0, -6.5, 0], [0, 10, 0]), mirrorMaterial),
     ];
-    objs[0].shape.scale([1.5, 1, 1]);
+    objs[0].shape.scale([1.3, 1, 1]);
     objs[0].shape.rotate(0.2, 0.4, 0.2);
 
     objs[1].shape.scale([1, 2, 1]);
 
-    objs[2].shape.scale([1, 1, 2]);
+    objs[2].shape.scale([1, 1.2, 1.2]);
 
-    objs[3].shape.rotate(0, Math.PI / 4, 0);
+    objs[3].shape.rotate(0, Math.PI / 16, 0);
 
     this.instances.push(...objs);
   }
@@ -109,17 +109,21 @@ export class Scene {
         ray.origin,
         Vector3.scale(ray.direction, min)
       );
-
-      let normalToSurface = instance.shape.normalIntersect(intersection);
-
       if (instance.shape.matrixInv) {
         intersection = Vector3.applyMatrix4(
           intersection,
           instance.shape.matrixInv
         );
-        normalToSurface = Vector3.applyMatrix4(
-          normalToSurface,
-          Matrix4.transpose(instance.shape.matrixInv)
+      }
+
+      let normalToSurface = instance.shape.normalIntersect(intersection);
+
+      if (instance.shape.matrixInv) {
+        normalToSurface = Vector3.normalize(
+          Vector3.applyMatrix4(
+            normalToSurface,
+            Matrix4.transpose(instance.shape.matrixInv)
+          )
         );
       }
 
@@ -140,7 +144,7 @@ export class Scene {
             this.ambientLight,
             Vector3.scaleDivide(
               Vector3.scale(hit.instance.light.color, hit.instance.light.power),
-              Math.pow(hit.distance, 2)
+              Math.pow(hit.distance, 0)
             )
           );
         } else {

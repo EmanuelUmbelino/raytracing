@@ -9,31 +9,31 @@ import { Scene } from "./classes/scene";
 
 import { linspace } from "./methods/linspace";
 
-const WIDTH = 400,
-  HEIGHT = 300;
-
-export function render() {
+export function render(
+  width = 400,
+  height = 300,
+  antialising = 4,
+  maxDepth = 10
+) {
   const date = new Date();
-  const antialising = 2;
-  const maxDepth = 10;
 
-  const camera: Camera = new Camera([0, 0, 1], WIDTH, HEIGHT);
+  const camera: Camera = new Camera([-0.1, 0, 1], width, height);
 
-  const film: Film = new Film(WIDTH, HEIGHT, antialising);
+  const film: Film = new Film(width, height, antialising);
 
   const scene: Scene = new Scene(maxDepth);
 
   console.log(`render started...`);
-  const ys = linspace(camera.screen.top, camera.screen.bottom, HEIGHT);
-  const xs = linspace(camera.screen.left, camera.screen.right, WIDTH);
+  const ys = linspace(camera.screen.top, camera.screen.bottom, height);
+  const xs = linspace(camera.screen.left, camera.screen.right, width);
 
   const start = performance.now();
-  for (let i = 0; i < HEIGHT; i++) {
+  for (let i = 0; i < height; i++) {
     if (i % 60 === 0) {
-      console.log(`progress: ${Math.floor((i / HEIGHT) * 100)}%`);
+      console.log(`progress: ${Math.floor((i / height) * 100)}%`);
     }
 
-    for (let j = 0; j < WIDTH; j++) {
+    for (let j = 0; j < width; j++) {
       let color: Vector3.T = [0, 0, 0];
       for (let k = 1; k < antialising; k++) {
         const pixel = film.getSample(xs[j], ys[i]);
@@ -54,8 +54,8 @@ export function render() {
   const data = {
     date: date.toLocaleString(),
     executionTimeSec,
-    width: WIDTH,
-    height: HEIGHT,
+    width,
+    height,
     antialising,
     maxDepth,
     objs: scene.instances.length - scene.lightSources.length,

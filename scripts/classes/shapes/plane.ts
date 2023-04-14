@@ -11,7 +11,7 @@ export class Plane extends Shape {
     super();
 
     this.position = position;
-    this.normal = normal;
+    this.normal = Vector3.normalize(normal);
   }
 
   normalIntersect(intersection: Vector3.T): Vector3.T {
