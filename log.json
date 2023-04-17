@@ -2958,5 +2958,195 @@
     "maxDepth": 10,
     "objs": 8,
     "lights": 1
+  },
+  "2023-04-14T12:40:02.753Z": {
+    "date": "14/04/2023, 09:40:02",
+    "executionTimeSec": 108.173,
+    "width": 1280,
+    "height": 720,
+    "antialising": 16,
+    "maxDepth": 2,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-14T12:43:22.278Z": {
+    "date": "14/04/2023, 09:43:22",
+    "executionTimeSec": 3.659,
+    "width": 1280,
+    "height": 720,
+    "antialising": 16,
+    "maxDepth": 0,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-14T12:43:48.840Z": {
+    "date": "14/04/2023, 09:43:48",
+    "executionTimeSec": 0.081,
+    "width": 1280,
+    "height": 720,
+    "antialising": 1,
+    "maxDepth": 1,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-14T12:43:58.993Z": {
+    "date": "14/04/2023, 09:43:58",
+    "executionTimeSec": 4.693,
+    "width": 1280,
+    "height": 720,
+    "antialising": 2,
+    "maxDepth": 1,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-17T17:56:27.578Z": {
+    "date": "17/04/2023, 14:56:27",
+    "executionTimeSec": 4.614,
+    "width": 1280,
+    "height": 720,
+    "antialising": 2,
+    "maxDepth": 1,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-17T17:56:54.681Z": {
+    "date": "17/04/2023, 14:56:54",
+    "executionTimeSec": 345.767,
+    "width": 1920,
+    "height": 1080,
+    "antialising": 16,
+    "maxDepth": 5,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-17T18:05:20.219Z": {
+    "date": "17/04/2023, 15:05:20",
+    "executionTimeSec": 4.498,
+    "width": 800,
+    "height": 600,
+    "antialising": 2,
+    "maxDepth": 5,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-17T18:08:18.452Z": {
+    "date": "17/04/2023, 15:08:18",
+    "executionTimeSec": 0.034,
+    "width": 800,
+    "height": 600,
+    "antialising": 0,
+    "maxDepth": 5,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-17T18:08:41.478Z": {
+    "date": "17/04/2023, 15:08:41",
+    "executionTimeSec": 0.032,
+    "width": 800,
+    "height": 600,
+    "antialising": 1,
+    "maxDepth": 5,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-17T18:09:36.255Z": {
+    "date": "17/04/2023, 15:09:36",
+    "executionTimeSec": 5.454,
+    "width": 800,
+    "height": 600,
+    "antialising": 1,
+    "maxDepth": 5,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-17T18:10:16.507Z": {
+    "date": "17/04/2023, 15:10:16",
+    "executionTimeSec": 25.441,
+    "width": 1920,
+    "height": 1080,
+    "antialising": 1,
+    "maxDepth": 5,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-17T18:12:25.720Z": {
+    "date": "17/04/2023, 15:12:25",
+    "executionTimeSec": 2.206,
+    "width": 800,
+    "height": 600,
+    "antialising": 1,
+    "maxDepth": 1,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-17T18:12:50.440Z": {
+    "date": "17/04/2023, 15:12:50",
+    "executionTimeSec": 10.281,
+    "width": 1920,
+    "height": 1080,
+    "antialising": 1,
+    "maxDepth": 1,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-17T18:14:34.390Z": {
+    "date": "17/04/2023, 15:14:34",
+    "executionTimeSec": 8.457,
+    "width": 1920,
+    "height": 1080,
+    "antialising": 1,
+    "maxDepth": 1,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-17T18:20:50.111Z": {
+    "date": "17/04/2023, 15:20:50",
+    "executionTimeSec": 10.449,
+    "width": 1920,
+    "height": 1080,
+    "antialising": 1,
+    "maxDepth": 1,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-17T18:21:31.388Z": {
+    "date": "17/04/2023, 15:21:31",
+    "executionTimeSec": 10.354,
+    "width": 1920,
+    "height": 1080,
+    "antialising": 1,
+    "maxDepth": 1,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-17T18:22:03.114Z": {
+    "date": "17/04/2023, 15:22:03",
+    "executionTimeSec": 10.169,
+    "width": 1920,
+    "height": 1080,
+    "antialising": 1,
+    "maxDepth": 1,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-17T18:22:55.031Z": {
+    "date": "17/04/2023, 15:22:55",
+    "executionTimeSec": 10.086,
+    "width": 1920,
+    "height": 1080,
+    "antialising": 1,
+    "maxDepth": 1,
+    "objs": 8,
+    "lights": 1
+  },
+  "2023-04-17T18:29:47.645Z": {
+    "date": "17/04/2023, 15:29:47",
+    "executionTimeSec": 10.596,
+    "width": 1920,
+    "height": 1080,
+    "antialising": 1,
+    "maxDepth": 1,
+    "objs": 8,
+    "lights": 1
   }
 }

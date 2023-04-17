@@ -19,11 +19,14 @@ export class Film {
   }
 
   getSample(i: number, j: number): Vector3.T {
-    return [
-      i + Math.random() / this.resolution.w,
-      j + Math.random() / this.resolution.h,
-      0,
-    ];
+    if (this.antialising > 1) {
+      return [
+        i + Math.random() / this.resolution.w,
+        j + Math.random() / this.resolution.h,
+        0,
+      ];
+    }
+    return [i + 0.5 / this.resolution.w, j + 0.5 / this.resolution.h, 0];
   }
 
   setPixelColor(i: number, j: number, c: Vector3.T) {

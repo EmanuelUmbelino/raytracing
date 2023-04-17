@@ -35,7 +35,7 @@ export function render(
 
     for (let j = 0; j < width; j++) {
       let color: Vector3.T = [0, 0, 0];
-      for (let k = 1; k < antialising; k++) {
+      for (let k = 0; k < antialising; k++) {
         const pixel = film.getSample(xs[j], ys[i]);
         const ray = camera.generateRay(pixel);
         color = Vector3.add(color, scene.traceRay(ray));
